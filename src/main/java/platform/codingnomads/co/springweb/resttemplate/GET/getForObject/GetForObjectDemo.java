@@ -6,15 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
-<<<<<<< HEAD
-import platform.codingnomads.co.springweb.resttemplate.GET.getForObject.video_demo.CodingNomadsTasksApiResponse;
-import platform.codingnomads.co.springweb.resttemplate.GET.models.KanyeTemplate;
-=======
+
 import platform.codingnomads.co.springweb.resttemplate.GET.models.QuoteTemplate;
 
 import java.util.Arrays;
-import java.util.List;
->>>>>>> 5780cbda3eb53f9146d3ba20a6471c25ee36c8dc
 
 @SpringBootApplication
 public class GetForObjectDemo {
