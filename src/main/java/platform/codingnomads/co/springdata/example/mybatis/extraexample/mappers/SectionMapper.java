@@ -19,7 +19,7 @@ public interface SectionMapper {
                     column = "id",
                     javaType = List.class,
                     many = @Many(
-                            select = "com.bensiegler.mappers.ChapterMapper.getChaptersBySectionId",
+                            select = "platform.codingnomads.co.springdata.example.mybatis.extraexample.mappers.ChapterMapper.getChaptersBySectionId",
                             fetchType = FetchType.LAZY
                     )
             )
