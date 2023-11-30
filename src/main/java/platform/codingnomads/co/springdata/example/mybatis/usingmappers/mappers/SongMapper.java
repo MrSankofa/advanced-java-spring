@@ -50,7 +50,7 @@ public interface SongMapper {
     @ResultMap("songResultMap")
     ArrayList<Song> getSongsByAlbumAndArtist(Long artistId, String albumName);
 
-    @Select("SELECT *" +
+    @Select("SELECT * " +
             "FROM mybatis.songs " +
             "WHERE artist_id = #{param1};")
     @ResultMap("songResultMap")
