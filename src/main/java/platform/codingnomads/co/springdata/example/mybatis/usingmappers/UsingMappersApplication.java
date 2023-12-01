@@ -21,6 +21,7 @@ public class UsingMappersApplication implements CommandLineRunner {
         songService.insertData();
         songService.queryData();
         songService.deleteSomeData();
-//        service.doSomething();
+        // uncomment to explore transactional rollback behavior
+        // service.doSomething();
     }
 }
