@@ -20,7 +20,7 @@ import java.util.List;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-@EnableJpaRepositories("platform.codingnomads.co.springdata.example.querydsl.repository")
+//@EnableJpaRepositories("platform.codingnomads.co.springdata.example.querydsl.repository")
 public class QueryDSLDemo implements CommandLineRunner {
 
     private final RouteRepository routeRepository;
