@@ -14,8 +14,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    final CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     public List<Customer> getAllCustomers() {
