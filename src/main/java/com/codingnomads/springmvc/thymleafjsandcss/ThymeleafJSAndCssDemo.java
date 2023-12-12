@@ -1,5 +1,5 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springmvc.thymleafjsandcss;
-
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

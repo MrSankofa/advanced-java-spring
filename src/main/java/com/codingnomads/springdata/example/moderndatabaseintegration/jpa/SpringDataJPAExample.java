@@ -1,8 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.moderndatabaseintegration.jpa;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,8 +13,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import jakarta.persistence.Entity;
 
 @SpringBootApplication
 public class SpringDataJPAExample implements CommandLineRunner {
@@ -27,8 +26,7 @@ public class SpringDataJPAExample implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        employeeRepository.findAll()
-                .forEach(employee -> System.out.println(employee.toString()));
+        employeeRepository.findAll().forEach(employee -> System.out.println(employee.toString()));
     }
 }
 
@@ -40,11 +38,10 @@ class Employee {
     @Id
     @GeneratedValue
     private int id;
+
     private String firstName;
     private String lastName;
 }
 
 @Repository
-interface EmployeeRepository extends JpaRepository<Employee, Long> {
-}
-
+interface EmployeeRepository extends JpaRepository<Employee, Long> {}

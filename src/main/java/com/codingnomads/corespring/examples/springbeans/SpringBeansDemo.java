@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.corespring.examples.springbeans;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +12,8 @@ public class SpringBeansDemo {
     public static void main(String[] args) {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringBeansDemoConfig.class);
         SpringDeveloper springDeveloper = ctx.getBean(SpringDeveloper.class);
-        System.out.println("Spring Developer Address: " + springDeveloper.getAddress().getStreetNumber() + " " +
-                springDeveloper.getAddress().getStreet());
+        System.out.println(
+                "Spring Developer Address: " + springDeveloper.getAddress().getStreetNumber() + " "
+                        + springDeveloper.getAddress().getStreet());
     }
 }

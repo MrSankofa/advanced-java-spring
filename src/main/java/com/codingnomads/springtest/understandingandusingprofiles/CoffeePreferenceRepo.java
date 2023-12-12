@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.understandingandusingprofiles;
 
 import org.springframework.context.annotation.Profile;
@@ -6,6 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Profile("understanding_and_using_profiles")
-public interface CoffeePreferenceRepo extends JpaRepository<CoffeePreference, Long> {
-
-}
+public interface CoffeePreferenceRepo extends JpaRepository<CoffeePreference, Long> {}

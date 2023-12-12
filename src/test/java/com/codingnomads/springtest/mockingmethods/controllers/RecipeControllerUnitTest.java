@@ -1,6 +1,26 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.mockingmethods.controllers;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import com.codingnomads.springtest.TestUtil;
+import com.codingnomads.springtest.mockingmethods.RecipeMain;
+import com.codingnomads.springtest.mockingmethods.exceptions.NoSuchRecipeException;
+import com.codingnomads.springtest.mockingmethods.models.Ingredient;
+import com.codingnomads.springtest.mockingmethods.models.Recipe;
+import com.codingnomads.springtest.mockingmethods.models.Step;
 import com.codingnomads.springtest.mockingmethods.security.SecurityConfig;
+import com.codingnomads.springtest.mockingmethods.services.RecipeService;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -10,26 +30,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import com.codingnomads.springtest.TestUtil;
-import com.codingnomads.springtest.mockingmethods.RecipeMain;
-import com.codingnomads.springtest.mockingmethods.exceptions.NoSuchRecipeException;
-import com.codingnomads.springtest.mockingmethods.models.Ingredient;
-import com.codingnomads.springtest.mockingmethods.models.Recipe;
-import com.codingnomads.springtest.mockingmethods.models.Step;
-import com.codingnomads.springtest.mockingmethods.services.RecipeService;
-
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Set;
-
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(RecipeController.class)
 @ContextConfiguration(classes = RecipeMain.class)
@@ -45,74 +45,76 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void testGetRecipeByIdNormalBehavior() throws Exception {
-        //create recipe
+        // create recipe
         Recipe recipe = Recipe.builder()
                 .name("test recipe")
                 .difficultyRating(1)
                 .minutesToMake(5)
-                .ingredients(
-                        Set.of(Ingredient.builder().amount("1 jar").name("pickles").build())
-                )
-                .steps(
-                        Set.of(Step.builder().description("eat pickles").stepNumber(1).build())
-                )
+                .ingredients(Set.of(
+                        Ingredient.builder().amount("1 jar").name("pickles").build()))
+                .steps(Set.of(
+                        Step.builder().description("eat pickles").stepNumber(1).build()))
                 .build();
 
-        //when RecipeService's getRecipeById() method is called with any Long passed in
+        // when RecipeService's getRecipeById() method is called with any Long passed in
         when(recipeService.getRecipeById(anyLong()))
-                //it will return the above defined recipe
+                // it will return the above defined recipe
                 .thenReturn(recipe);
 
-        //test that the controller works properly when the above recipe is guaranteed to be returned from its
-        //getRecipeById() method call
+        // test that the controller works properly when the above recipe is guaranteed to be returned from its
+        // getRecipeById() method call
         mockMvc.perform(get("/recipes/1"))
-                //expect 200 OK
+                // expect 200 OK
                 .andExpect(status().isOk())
-                //expect JSON in the body
+                // expect JSON in the body
                 .andExpect(content().contentType("application/json"))
-                //expect the JSON matches the Recipe returned from getRecipeById()
+                // expect the JSON matches the Recipe returned from getRecipeById()
                 .andExpect(content().string(TestUtil.convertObjectToJsonString(recipe)));
     }
 
     @Test
     public void testGetRecipeByIdFailureBehavior() throws Exception {
-        when(recipeService.getRecipeById(any()))
-                .thenThrow(new NoSuchRecipeException("test this is in body"));
+        when(recipeService.getRecipeById(any())).thenThrow(new NoSuchRecipeException("test this is in body"));
 
         mockMvc.perform(get("/recipes/" + 1L))
-                //print response
+                // print response
                 .andDo(print())
-                //expect status 404 NOT FOUND
+                // expect status 404 NOT FOUND
                 .andExpect(status().isNotFound())
-                //confirm that HTTP body contains correct error message
+                // confirm that HTTP body contains correct error message
                 .andExpect(content().string(containsString("test this is in body")));
     }
 
     @Test
     public void testGetRecipeByNameSuccessBehavior() throws Exception {
-        when(recipeService.getRecipesByName(anyString())).thenReturn(
-                new ArrayList<>(Arrays.asList(
+        when(recipeService.getRecipesByName(anyString()))
+                .thenReturn(new ArrayList<>(Arrays.asList(
                         Recipe.builder()
                                 .id(1L)
                                 .name("searched recipe 1")
                                 .difficultyRating(1)
                                 .minutesToMake(5)
-                                .ingredients(Set.of(Ingredient.builder().amount("1 jar").name("pickles").state("jarred").build()))
+                                .ingredients(Set.of(Ingredient.builder()
+                                        .amount("1 jar")
+                                        .name("pickles")
+                                        .state("jarred")
+                                        .build()))
                                 .steps(Set.of(
-                                        Step.builder().description("eat pickles").stepNumber(1).build(),
-                                        Step.builder().description("don't forget to close the jar!").stepNumber(2).build()
-                                ))
+                                        Step.builder()
+                                                .description("eat pickles")
+                                                .stepNumber(1)
+                                                .build(),
+                                        Step.builder()
+                                                .description("don't forget to close the jar!")
+                                                .stepNumber(2)
+                                                .build()))
                                 .build(),
-
                         Recipe.builder()
                                 .id(2L)
                                 .name("searched recipe 2")
                                 .difficultyRating(10)
                                 .minutesToMake(10)
-                                .build()
-                ))
-        );
-
+                                .build())));
 
         mockMvc.perform(get("/recipes/search/searched"))
                 .andExpect(status().isOk())
@@ -120,7 +122,6 @@ public class RecipeControllerUnitTest {
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name").value(containsString("searched")))
                 .andExpect(jsonPath("$[1].name").value(containsString("searched")));
-
     }
 
     @Test
@@ -137,8 +138,8 @@ public class RecipeControllerUnitTest {
     @Test
     public void testGetAllRecipesSuccessBehavior() throws Exception {
 
-        when(recipeService.getAllRecipes()).thenReturn(
-                new ArrayList<>(Arrays.asList(
+        when(recipeService.getAllRecipes())
+                .thenReturn(new ArrayList<>(Arrays.asList(
                         Recipe.builder()
                                 .id(1L)
                                 .name("mocked name")
@@ -151,53 +152,54 @@ public class RecipeControllerUnitTest {
                                 .minutesToMake(1)
                                 .difficultyRating(10)
                                 .ingredients(Set.of(Ingredient.builder()
-                                            .id(1L).name("mock sauce")
-                                            .state("saucy")
-                                            .amount("lots").build()))
+                                        .id(1L)
+                                        .name("mock sauce")
+                                        .state("saucy")
+                                        .amount("lots")
+                                        .build()))
                                 .steps(Set.of(Step.builder()
-                                            .id(1L)
-                                            .stepNumber(1)
-                                            .description("mock the mock sauce").build()))
-                                .build())
-                )
-        );
+                                        .id(1L)
+                                        .stepNumber(1)
+                                        .description("mock the mock sauce")
+                                        .build()))
+                                .build())));
 
-        //set up get request for all recipe endpoint
+        // set up get request for all recipe endpoint
         mockMvc.perform(get("/recipes"))
                 .andDo(print())
-                //expect status is 200 OK
+                // expect status is 200 OK
                 .andExpect(status().isOk())
-                //expect it will be returned as JSON
+                // expect it will be returned as JSON
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-                //expect there are 4 entries
+                // expect there are 4 entries
                 .andExpect(jsonPath("$", hasSize(2)))
-                //expect the first entry to have ID 1
+                // expect the first entry to have ID 1
                 .andExpect(jsonPath("$[0].id").value(1))
-                //expect the first entry to have name test recipe
+                // expect the first entry to have name test recipe
                 .andExpect(jsonPath("$[0].name").value("mocked name"))
-                //expect no ingredients for first entry
+                // expect no ingredients for first entry
                 .andExpect(jsonPath("$[0].ingredients").isEmpty())
-                //expect the second entry to have id 2
+                // expect the second entry to have id 2
                 .andExpect(jsonPath("$[1].id").value(2))
-                //expect the second entry to have a minutesToMake value of 2
+                // expect the second entry to have a minutesToMake value of 2
                 .andExpect(jsonPath("$[1].minutesToMake").value(1))
-                //expect the second entry to have an ingredient with name "mock sauce"
+                // expect the second entry to have an ingredient with name "mock sauce"
                 .andExpect(jsonPath("$[1].ingredients[0].name").value("mock sauce"))
-                //expect the second entry has 1 step
+                // expect the second entry has 1 step
                 .andExpect(jsonPath("$[1].steps[0].description").value("mock the mock sauce"));
     }
 
     @Test
     public void testGetAllRecipesFailureBehavior() throws Exception {
-        //when all recipes is called throw new NoSuchRecipeException with a random message
+        // when all recipes is called throw new NoSuchRecipeException with a random message
         when(recipeService.getAllRecipes()).thenThrow(new NoSuchRecipeException("this should be in the body"));
 
-        //perform GET all recipes
+        // perform GET all recipes
         mockMvc.perform(get("/recipes"))
                 .andDo(print())
-                //expect 404 NOT FOUND
+                // expect 404 NOT FOUND
                 .andExpect(status().isNotFound())
-                //expect error message defined above
+                // expect error message defined above
                 .andExpect(content().string(containsString("this should be in the body")));
     }
 
@@ -208,21 +210,35 @@ public class RecipeControllerUnitTest {
                 .name("water in a glass")
                 .difficultyRating(1)
                 .minutesToMake(1)
-                .ingredients(Set.of(Ingredient.builder().id(1L).name("water").state("liquid").build()))
+                .ingredients(Set.of(Ingredient.builder()
+                        .id(1L)
+                        .name("water")
+                        .state("liquid")
+                        .build()))
                 .steps(Set.of(
-                        Step.builder().id(1L).stepNumber(1).description("turn on faucet").build(),
-                        Step.builder().id(2L).stepNumber(2).description("fill glass").build(),
-                        Step.builder().id(3L).stepNumber(3).description("turn off faucet").build())
-                )
+                        Step.builder()
+                                .id(1L)
+                                .stepNumber(1)
+                                .description("turn on faucet")
+                                .build(),
+                        Step.builder()
+                                .id(2L)
+                                .stepNumber(2)
+                                .description("fill glass")
+                                .build(),
+                        Step.builder()
+                                .id(3L)
+                                .stepNumber(3)
+                                .description("turn off faucet")
+                                .build()))
                 .locationURI(new URI("http://thisIsALink.com/1"))
                 .build();
 
         when(recipeService.createNewRecipe(any(Recipe.class))).thenReturn(recipe);
 
         mockMvc.perform(post("/recipes")
-                            .contentType("application/json")
-                            .content(TestUtil.convertObjectToJsonBytes(recipe))
-                )
+                        .contentType("application/json")
+                        .content(TestUtil.convertObjectToJsonBytes(recipe)))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("Location", "http://thisIsALink.com/1"))
                 .andExpect(content().contentType("application/json"))
@@ -238,34 +254,30 @@ public class RecipeControllerUnitTest {
 
     @Test
     public void testCreateNewRecipeFailureBehavior() throws Exception {
-        when(recipeService.createNewRecipe(any(Recipe.class)))
-                .thenThrow(new IllegalStateException("does it match?"));
+        when(recipeService.createNewRecipe(any(Recipe.class))).thenThrow(new IllegalStateException("does it match?"));
 
-
-        //force failure with empty User object
-        mockMvc.perform(
-                post("/recipes")
-                        //set body equal to empty recipe object
-                        .content(TestUtil.convertObjectToJsonBytes(Recipe.builder().build()))
-                        //set Content-Type header
-                        .contentType("application/json")
-        )
-                //confirm status code 400 BAD REQUEST
+        // force failure with empty User object
+        mockMvc.perform(post("/recipes")
+                        // set body equal to empty recipe object
+                        .content(TestUtil.convertObjectToJsonBytes(
+                                Recipe.builder().build()))
+                        // set Content-Type header
+                        .contentType("application/json"))
+                // confirm status code 400 BAD REQUEST
                 .andExpect(status().isBadRequest())
-                //confirm the body only contains a String
+                // confirm the body only contains a String
                 .andExpect(content().string(containsString("does it match?")));
     }
 
     @Test
     public void testDeleteRecipeByIdSuccessBehavior() throws Exception {
-        when(recipeService.deleteRecipeById(anyLong())).thenReturn(
-                Recipe.builder()
+        when(recipeService.deleteRecipeById(anyLong()))
+                .thenReturn(Recipe.builder()
                         .id(1L)
                         .name("deleted!")
                         .minutesToMake(1)
                         .difficultyRating(5)
-                        .build()
-        );
+                        .build());
 
         mockMvc.perform(delete("/recipes/1"))
                 .andExpect(status().isOk())
@@ -292,9 +304,8 @@ public class RecipeControllerUnitTest {
         when(recipeService.updateRecipe(any(Recipe.class), eq(true))).thenReturn(recipe);
 
         mockMvc.perform(patch("/recipes")
-                            .contentType("application/json")
-                            .content(TestUtil.convertObjectToJsonBytes(recipe))
-                        )
+                        .contentType("application/json")
+                        .content(TestUtil.convertObjectToJsonBytes(recipe)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(content().json(TestUtil.convertObjectToJsonString(recipe)));
@@ -307,24 +318,21 @@ public class RecipeControllerUnitTest {
 
         mockMvc.perform(patch("/recipes")
                         .contentType("application/json")
-                        .content(TestUtil.convertObjectToJsonBytes(Recipe.builder().build()))
-                    )
+                        .content(TestUtil.convertObjectToJsonBytes(
+                                Recipe.builder().build())))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().contentType("text/plain;charset=UTF-8"))
                 .andExpect(content().string("found in body?"));
-
 
         when(recipeService.updateRecipe(any(Recipe.class), eq(true)))
                 .thenThrow(new IllegalStateException("found in body?"));
 
         mockMvc.perform(patch("/recipes")
-                .contentType("application/json")
-                .content(TestUtil.convertObjectToJsonBytes(Recipe.builder().build()))
-        )
+                        .contentType("application/json")
+                        .content(TestUtil.convertObjectToJsonBytes(
+                                Recipe.builder().build())))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().contentType("text/plain;charset=UTF-8"))
                 .andExpect(content().string("found in body?"));
-
     }
-
 }

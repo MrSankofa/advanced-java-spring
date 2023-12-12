@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.manytomany.jointableexample;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.Set;
+import lombok.*;
 
 @Entity
 @Getter
@@ -27,10 +27,9 @@ public class Post {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
-            //change join table name
+            // change join table name
             name = "post_location_join_table",
-            //specify a column named location_latitude referencing the latitude column in the locations table
-            inverseJoinColumns = @JoinColumn(name = "location_latitude", referencedColumnName = "latitude")
-    )
+            // specify a column named location_latitude referencing the latitude column in the locations table
+            inverseJoinColumns = @JoinColumn(name = "location_latitude", referencedColumnName = "latitude"))
     private Set<Location> locations;
 }

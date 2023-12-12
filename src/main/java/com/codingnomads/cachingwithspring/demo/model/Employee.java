@@ -1,13 +1,13 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.cachingwithspring.demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
 
 @NoArgsConstructor
 @Getter
@@ -20,6 +20,6 @@ public class Employee implements Serializable {
     @Id
     @GeneratedValue
     private int id;
+
     private String name;
 }
-

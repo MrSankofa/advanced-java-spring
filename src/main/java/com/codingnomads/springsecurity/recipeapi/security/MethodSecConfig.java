@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.security;
 
 import org.springframework.beans.factory.annotation.Autowired;

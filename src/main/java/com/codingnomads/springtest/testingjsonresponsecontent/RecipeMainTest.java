@@ -1,16 +1,16 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.testingjsonresponsecontent;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Profile;
 import com.codingnomads.springtest.testingjsonresponsecontent.models.Ingredient;
 import com.codingnomads.springtest.testingjsonresponsecontent.models.Recipe;
 import com.codingnomads.springtest.testingjsonresponsecontent.models.Review;
 import com.codingnomads.springtest.testingjsonresponsecontent.models.Step;
 import com.codingnomads.springtest.testingjsonresponsecontent.repositories.RecipeRepo;
-
 import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 @Profile("test")
@@ -24,11 +24,22 @@ public class RecipeMainTest implements CommandLineRunner {
         System.out.println("STARTING WITH TEST DATABASE SETUP");
         if (recipeRepo.findAll().isEmpty()) {
 
-            Ingredient ingredient = Ingredient.builder().name("flour").state("dry").amount("2 cups").build();
-            Step step1 = Step.builder().description("put flour in bowl").stepNumber(1).build();
+            Ingredient ingredient = Ingredient.builder()
+                    .name("flour")
+                    .state("dry")
+                    .amount("2 cups")
+                    .build();
+            Step step1 = Step.builder()
+                    .description("put flour in bowl")
+                    .stepNumber(1)
+                    .build();
             Step step2 = Step.builder().description("eat it?").stepNumber(2).build();
 
-            Review review = Review.builder().description("tasted pretty bad").rating(2).username("idfk").build();
+            Review review = Review.builder()
+                    .description("tasted pretty bad")
+                    .rating(2)
+                    .username("idfk")
+                    .build();
 
             Recipe recipe1 = Recipe.builder()
                     .name("test recipe")
@@ -44,7 +55,11 @@ public class RecipeMainTest implements CommandLineRunner {
             ingredient.setId(null);
             Recipe recipe2 = Recipe.builder()
                     .steps(Set.of(Step.builder().description("test").build()))
-                    .ingredients(Set.of(Ingredient.builder().name("test ing").amount("1").state("dry").build()))
+                    .ingredients(Set.of(Ingredient.builder()
+                            .name("test ing")
+                            .amount("1")
+                            .state("dry")
+                            .build()))
                     .name("another test recipe")
                     .difficultyRating(10)
                     .minutesToMake(2)
@@ -53,7 +68,11 @@ public class RecipeMainTest implements CommandLineRunner {
 
             Recipe recipe3 = Recipe.builder()
                     .steps(Set.of(Step.builder().description("test 2").build()))
-                    .ingredients(Set.of(Ingredient.builder().name("test ing 2").amount("2").state("wet").build()))
+                    .ingredients(Set.of(Ingredient.builder()
+                            .name("test ing 2")
+                            .amount("2")
+                            .state("wet")
+                            .build()))
                     .name("another another test recipe")
                     .difficultyRating(5)
                     .minutesToMake(2)
@@ -66,13 +85,23 @@ public class RecipeMainTest implements CommandLineRunner {
                     .difficultyRating(10)
                     .minutesToMake(1)
                     .ingredients(Set.of(
-                            Ingredient.builder().name("potato chips").amount("1 bag").build(),
-                            Ingredient.builder().name("chocolate").amount("1 bar").build()))
-                    .steps(Set.of(
-                            Step.builder().stepNumber(1).description("eat both items together").build()))
-                    .reviews(Set.of(
-                            Review.builder().username("ben").rating(10).description("this stuff is so good").build()
-                    ))
+                            Ingredient.builder()
+                                    .name("potato chips")
+                                    .amount("1 bag")
+                                    .build(),
+                            Ingredient.builder()
+                                    .name("chocolate")
+                                    .amount("1 bar")
+                                    .build()))
+                    .steps(Set.of(Step.builder()
+                            .stepNumber(1)
+                            .description("eat both items together")
+                            .build()))
+                    .reviews(Set.of(Review.builder()
+                            .username("ben")
+                            .rating(10)
+                            .description("this stuff is so good")
+                            .build()))
                     .build();
 
             recipeRepo.save(recipe4);

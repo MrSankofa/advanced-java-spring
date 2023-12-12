@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springfundamentals.example;
 
 import org.springframework.context.annotation.Bean;

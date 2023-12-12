@@ -1,11 +1,11 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.lab_complete.models;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
@@ -27,7 +27,9 @@ public class PointOfInterest implements Serializable {
     private Area area;
 
     @ManyToMany
-    @JoinTable(name="poi_route", joinColumns = @JoinColumn(name = "poi_id"),
+    @JoinTable(
+            name = "poi_route",
+            joinColumns = @JoinColumn(name = "poi_id"),
             inverseJoinColumns = @JoinColumn(name = "route_id"))
     private List<Route> routes;
 
@@ -60,10 +62,6 @@ public class PointOfInterest implements Serializable {
     // exclude area and routes to avoid circular reference
     @Override
     public String toString() {
-        return "PointOfInterest{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return "PointOfInterest{" + "id=" + id + ", type='" + type + '\'' + ", name='" + name + '\'' + '}';
     }
 }

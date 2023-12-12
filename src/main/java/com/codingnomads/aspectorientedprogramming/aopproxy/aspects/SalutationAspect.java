@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.aspectorientedprogramming.aopproxy.aspects;
 
 import org.aspectj.lang.JoinPoint;
@@ -13,8 +14,10 @@ public class SalutationAspect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SalutationAspect.class);
 
-    @AfterReturning(pointcut = "execution(* com.codingnomads.aspectorientedprogramming.aopproxy.services." +
-            "PersonService+.getPersonFullName(..))", returning = "fullName")
+    @AfterReturning(
+            pointcut = "execution(* com.codingnomads.aspectorientedprogramming.aopproxy.services."
+                    + "PersonService+.getPersonFullName(..))",
+            returning = "fullName")
     public void logFullName(JoinPoint joinPoint, String fullName) {
         LOGGER.info("Full Name in ASPECT: " + fullName);
     }

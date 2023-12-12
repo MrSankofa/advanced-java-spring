@@ -1,17 +1,17 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authentication.usernamepassword;
 
 import com.codingnomads.springsecurity.authentication.usernamepassword.models.Authority;
 import com.codingnomads.springsecurity.authentication.usernamepassword.models.RoleEnum;
 import com.codingnomads.springsecurity.authentication.usernamepassword.models.UserPrincipal;
+import com.codingnomads.springsecurity.authentication.usernamepassword.repositories.AuthorityRepo;
+import com.codingnomads.springsecurity.authentication.usernamepassword.repositories.UserPrincipalRepo;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.codingnomads.springsecurity.authentication.usernamepassword.repositories.AuthorityRepo;
-import com.codingnomads.springsecurity.authentication.usernamepassword.repositories.UserPrincipalRepo;
-
-import java.util.Collections;
 
 @SpringBootApplication
 public class AuthenticationDemo implements CommandLineRunner {
@@ -39,10 +39,7 @@ public class AuthenticationDemo implements CommandLineRunner {
 
         if (userPrincipalRepo.findAll().isEmpty()) {
             userPrincipalRepo.save(
-                    new UserPrincipal("USER", passwordEncoder.encode("user"),
-                            Collections.singletonList(userAuth))
-            );
+                    new UserPrincipal("USER", passwordEncoder.encode("user"), Collections.singletonList(userAuth)));
         }
     }
 }
-

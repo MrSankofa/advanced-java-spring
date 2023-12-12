@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.wrappingup.multipartdata.models;
 
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import jakarta.persistence.*;
 
 @Entity
 @Getter

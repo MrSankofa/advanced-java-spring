@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.commonproblems.models;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "users")
@@ -24,7 +24,9 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     private ContactCard contactCard;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},
-            optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},
+            optional = false,
+            fetch = FetchType.LAZY)
     private Address address;
 }

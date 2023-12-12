@@ -1,14 +1,13 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.models.securitymodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-
-import jakarta.persistence.*;
-
 
 @Entity
 @Data

@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.springrestcontrollers.simpledemo.controller;
 
 import org.springframework.http.MediaType;
@@ -15,7 +16,7 @@ public class ConversionController {
         StringBuilder binary = new StringBuilder();
         char[] chars = text.toCharArray();
 
-        for(char c: chars) {
+        for (char c : chars) {
             binary.append("   ").append(Integer.toBinaryString(c));
         }
         return binary.toString();

@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.manytoone.bidirectional;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.Set;
+import lombok.*;
 
 @Entity
 @Getter
@@ -21,8 +21,7 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    //this annotation references the configuration on the post field in the Comment class
+    // this annotation references the configuration on the post field in the Comment class
     @OneToMany(mappedBy = "post")
     private Set<Comment> comments;
-
 }

@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.gettingdatafromclient.requestbody.models;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import lombok.*;
 
 @Entity
 @Builder
@@ -18,6 +18,7 @@ public class Task {
 
     private String name;
     private Boolean completed;
+
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 }

@@ -1,17 +1,16 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.services;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchRecipeException;
 import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchReviewException;
 import com.codingnomads.springsecurity.recipeapi.models.Recipe;
 import com.codingnomads.springsecurity.recipeapi.models.Review;
 import com.codingnomads.springsecurity.recipeapi.repositories.ReviewRepo;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ReviewService {
@@ -86,8 +85,9 @@ public class ReviewService {
         try {
             Review review = getReviewById(reviewToUpdate.getId());
         } catch (NoSuchReviewException e) {
-            throw new NoSuchReviewException("The review you are trying to update. Maybe you meant to create one? If not," +
-                    "Please double check the ID you passed in");
+            throw new NoSuchReviewException(
+                    "The review you are trying to update. Maybe you meant to create one? If not,"
+                            + "Please double check the ID you passed in");
         }
 
         reviewRepo.save(reviewToUpdate);

@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.derivedquerymethods.plantexample;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "soil_types")

@@ -1,10 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.usingmappers.models;
 
+import java.util.ArrayList;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor

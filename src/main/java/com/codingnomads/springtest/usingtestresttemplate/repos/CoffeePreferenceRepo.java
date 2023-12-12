@@ -1,7 +1,7 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.usingtestresttemplate.repos;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import com.codingnomads.springtest.usingtestresttemplate.models.CoffeePreference;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CoffeePreferenceRepo extends JpaRepository<CoffeePreference, Long> {
-}
+public interface CoffeePreferenceRepo extends JpaRepository<CoffeePreference, Long> {}

@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.lab.models;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
@@ -25,18 +25,13 @@ public class Route implements Serializable {
     private String code;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(
-            name = "origin_area_id",
-            nullable = false,
-            foreignKey = @ForeignKey(name = "fk_routes_origin_area_id")
-    )
+    @JoinColumn(name = "origin_area_id", nullable = false, foreignKey = @ForeignKey(name = "fk_routes_origin_area_id"))
     private Area origin;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(
             name = "destination_area_id",
             nullable = false,
-            foreignKey = @ForeignKey(name = "fk_routes_destination_area_id")
-    )
+            foreignKey = @ForeignKey(name = "fk_routes_destination_area_id"))
     private Area destination;
 }

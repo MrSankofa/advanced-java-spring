@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.security;
 
 import org.springframework.context.annotation.Bean;
@@ -18,19 +19,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                //disable CSRF for Postman usage
+                // disable CSRF for Postman usage
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                //authorize all requests to access CSS and JavaScript
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css", "/js").permitAll()
-                        //allow all requests to read recipes and reviews
-                        .requestMatchers(HttpMethod.GET, "/recipes/**", "/reviews").permitAll()
-                        //allow creation of new recipes and reviews
-                        .requestMatchers(HttpMethod.POST, "/recipes", "/reviews").permitAll()
-                        //all other requests should be authenticated
-                        .anyRequest().authenticated())
-                //users should log in with HTTP Basic.
+                // authorize all requests to access CSS and JavaScript
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/css", "/js")
+                        .permitAll()
+                        // allow all requests to read recipes and reviews
+                        .requestMatchers(HttpMethod.GET, "/recipes/**", "/reviews")
+                        .permitAll()
+                        // allow creation of new recipes and reviews
+                        .requestMatchers(HttpMethod.POST, "/recipes", "/reviews")
+                        .permitAll()
+                        // all other requests should be authenticated
+                        .anyRequest()
+                        .authenticated())
+                // users should log in with HTTP Basic.
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }

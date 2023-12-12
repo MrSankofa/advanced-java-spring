@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.springrestcontrollers.shortcutannotations.model;
 
 import jakarta.persistence.*;
@@ -15,8 +16,10 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column
     private String name;
+
     @Column
     private Boolean completed = false;
 }

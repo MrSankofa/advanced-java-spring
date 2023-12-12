@@ -1,8 +1,7 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.lab.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import com.codingnomads.springdata.lab.models.Area;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AreaRepository extends JpaRepository<Area,Long> {
-
-}
+public interface AreaRepository extends JpaRepository<Area, Long> {}

@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.custompermissions.models;
 
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-
-import jakarta.persistence.*;
 
 @Entity
 @Getter
@@ -15,15 +15,15 @@ public class MyGrantedAuthority implements GrantedAuthority {
     @GeneratedValue
     private Long id;
 
-    //object type that authority is granted on
+    // object type that authority is granted on
     @Column(nullable = false)
     private String objectType;
 
-    //id of object
+    // id of object
     @Column(nullable = false)
     private Long objectId;
 
-    //permission granted (read, update, delete, share, owner)
+    // permission granted (read, update, delete, share, owner)
     @Column(nullable = false)
     private String permission;
 
@@ -36,7 +36,7 @@ public class MyGrantedAuthority implements GrantedAuthority {
         this.permission = permission;
     }
 
-    //put together a grantedAuthorityString after the object is loaded from the database
+    // put together a grantedAuthorityString after the object is loaded from the database
     @PostLoad
     private void compileGrantedAuthorityString() {
         grantedAuthorityString = objectId + "_" + objectType + "_" + permission;

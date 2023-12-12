@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.lab.models;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor

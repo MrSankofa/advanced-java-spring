@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.corespring.examples.scopeannotaion;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;

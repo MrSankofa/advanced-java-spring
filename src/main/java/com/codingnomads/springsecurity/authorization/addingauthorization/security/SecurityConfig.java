@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.addingauthorization.security;
 
 import org.springframework.context.annotation.Bean;
@@ -16,23 +17,29 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                //disable CSRF filter to allow Postman to easily use the application
+                // disable CSRF filter to allow Postman to easily use the application
                 .csrf(csrf -> csrf.disable())
-                //start changing endpoint access settings
+                // start changing endpoint access settings
                 .authorizeHttpRequests(auth -> auth
-                    //the following 4 paths should be allowed to all always. They are static and are required to present the pages properly.
-                    .requestMatchers("/js/**", "/css/**", "/img/**", "/webjars/**").permitAll()
-                    //make sure that the admin page can only be accessed user with ROLE_ADMIN
-                    .requestMatchers("/admin").hasRole("ADMIN")
-                    //only allow users with ROLE_SUPERU to access the super user page
-                    .requestMatchers("/superu").hasRole("SUPERU")
-                    //only allow users with an UPDATER authority to update users.
-                    .requestMatchers("/update-user").hasAuthority("UPDATER")
-                    //make sure that all others requests require authentication.
-                    .anyRequest().authenticated())
-                //use HttpBasic authentication for /update-user, withDefaults() allows you to chain the next method
+                        // the following 4 paths should be allowed to all always. They are static and are required to
+                        // present the pages properly.
+                        .requestMatchers("/js/**", "/css/**", "/img/**", "/webjars/**")
+                        .permitAll()
+                        // make sure that the admin page can only be accessed user with ROLE_ADMIN
+                        .requestMatchers("/admin")
+                        .hasRole("ADMIN")
+                        // only allow users with ROLE_SUPERU to access the super user page
+                        .requestMatchers("/superu")
+                        .hasRole("SUPERU")
+                        // only allow users with an UPDATER authority to update users.
+                        .requestMatchers("/update-user")
+                        .hasAuthority("UPDATER")
+                        // make sure that all others requests require authentication.
+                        .anyRequest()
+                        .authenticated())
+                // use HttpBasic authentication for /update-user, withDefaults() allows you to chain the next method
                 .httpBasic(Customizer.withDefaults())
-                //use a form to log in with the default login page
+                // use a form to log in with the default login page
                 .formLogin(Customizer.withDefaults());
 
         return http.build();

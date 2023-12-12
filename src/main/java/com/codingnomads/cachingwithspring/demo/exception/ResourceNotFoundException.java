@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.cachingwithspring.demo.exception;
 
 import org.springframework.http.HttpStatus;

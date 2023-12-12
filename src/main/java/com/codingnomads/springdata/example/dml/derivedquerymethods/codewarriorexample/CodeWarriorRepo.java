@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.derivedquerymethods.codewarriorexample;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface CodeWarriorRepo extends JpaRepository<CodeWarrior, Long> {
@@ -29,7 +29,6 @@ public interface CodeWarriorRepo extends JpaRepository<CodeWarrior, Long> {
 
     List<CodeWarrior> findByLastNameStartingWith(String prefix);
 
-
     List<CodeWarrior> findByLastNameEndingWith(String prefix);
 
     List<CodeWarrior> findByLastNameContaining(String infix);
@@ -42,10 +41,9 @@ public interface CodeWarriorRepo extends JpaRepository<CodeWarrior, Long> {
 
     List<CodeWarrior> findByAgeGreaterThanEqual(Integer age);
 
-    List<CodeWarrior> findByLastNameContainingAndAgeGreaterThanEqual(String lastName,Integer age);
+    List<CodeWarrior> findByLastNameContainingAndAgeGreaterThanEqual(String lastName, Integer age);
 
     List<CodeWarrior> findTop2ByLastName(String lastName);
-
 
     List<CodeWarrior> findByLastNameIgnoreCase(String lastName);
 

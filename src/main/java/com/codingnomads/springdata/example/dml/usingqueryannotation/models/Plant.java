@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.usingqueryannotation.models;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.Objects;
+import lombok.*;
 
 @Entity
 @Table(name = "plants")
@@ -23,7 +23,10 @@ public class Plant {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToOne(cascade = {CascadeType.ALL}, optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(
+            cascade = {CascadeType.ALL},
+            optional = false,
+            fetch = FetchType.EAGER)
     private SoilType favoriteSoilType;
 
     private String sunType;
@@ -36,7 +39,7 @@ public class Plant {
     @PrePersist
     @PreUpdate
     private void checkForIllegalState() {
-        if(!fruitBearing && !Objects.isNull(numDaysTillRipeFruit)) {
+        if (!fruitBearing && !Objects.isNull(numDaysTillRipeFruit)) {
             throw new IllegalStateException("If the plant is not fruit bearing you cannot set numDaysTillRipeFruit");
         }
     }

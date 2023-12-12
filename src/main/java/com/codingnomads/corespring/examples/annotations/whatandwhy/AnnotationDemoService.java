@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.corespring.examples.annotations.whatandwhy;
 
 public class AnnotationDemoService implements LegacyInfoProvider {

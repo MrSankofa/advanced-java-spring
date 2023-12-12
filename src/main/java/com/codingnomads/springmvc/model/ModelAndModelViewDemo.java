@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springmvc.model;
 
 import org.springframework.boot.SpringApplication;

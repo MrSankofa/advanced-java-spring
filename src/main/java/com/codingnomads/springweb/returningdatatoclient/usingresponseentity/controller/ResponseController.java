@@ -1,14 +1,14 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.returningdatatoclient.usingresponseentity.controller;
 
 import com.codingnomads.springweb.returningdatatoclient.usingresponseentity.model.User;
+import java.net.URI;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.net.URI;
 
 @RestController
 public class ResponseController {
@@ -32,7 +32,7 @@ public class ResponseController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable int id) {
-        if (user.getId() == id ) {
+        if (user.getId() == id) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.lifecyclecallback;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.NoSuchElementException;
+import lombok.*;
 
 @Entity
 @Getter
@@ -18,22 +18,22 @@ public class GrantedAuthority {
     @Column(nullable = false)
     private Long userId;
 
-    //object type authority is granted on
+    // object type authority is granted on
     @Column(nullable = false)
     private String objectType;
 
-    //id of object
+    // id of object
     @Column(nullable = false)
     private Long objectId;
 
-    //permission granted (read, update, delete, share, owner)
+    // permission granted (read, update, delete, share, owner)
     @Column(nullable = false)
     private String permission;
 
     @Transient
     private String grantedAuthorityString;
 
-    //put together a grantedAuthorityString after the object is loaded from the database
+    // put together a grantedAuthorityString after the object is loaded from the database
     @PostLoad
     private void compileGrantedAuthorityString() {
         grantedAuthorityString = objectType + "_" + objectId + "_" + permission;
@@ -47,7 +47,8 @@ public class GrantedAuthority {
     }
 
     private void confirmObjectExists() {
-        if(/*implement confirmation logic*/false) {
+        if (
+        /*implement confirmation logic*/ false) {
             throw new NoSuchElementException("That object does not exist");
         }
     }

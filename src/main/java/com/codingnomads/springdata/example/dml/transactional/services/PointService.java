@@ -1,14 +1,14 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.transactional.services;
 
 import com.codingnomads.springdata.example.dml.transactional.models.Point;
 import com.codingnomads.springdata.example.dml.transactional.repositories.PointRepo;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.IOException;
 
 @Service
 public class PointService {
@@ -16,19 +16,19 @@ public class PointService {
     @Autowired
     PointRepo repo;
 
-    //@Transactional I
+    // @Transactional I
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public void doSomeWork() {
-        Point p = new Point(1,1);
+        Point p = new Point(1, 1);
         repo.save(p);
 
-        p = new Point(2,2);
+        p = new Point(2, 2);
         repo.save(p);
 
         /*
-            In order to call the foo() method - we must have an existing transaction (MANDATORY)
-         */
+           In order to call the foo() method - we must have an existing transaction (MANDATORY)
+        */
         foo();
     }
 
@@ -37,27 +37,27 @@ public class PointService {
         repo.getOne(1L);
     }
 
-    //@Transactional II
+    // @Transactional II
 
     @Transactional(timeout = 5)
     public void savePoint() {
-        //create new point (1,1)
-        Point p = new Point(1,1);
+        // create new point (1,1)
+        Point p = new Point(1, 1);
 
-        //save new point
+        // save new point
         repo.save(p);
     }
 
     @Transactional(timeout = 5)
     public void timeOutAfter5() {
-        Point p = new Point(2,2);
+        Point p = new Point(2, 2);
         repo.save(p);
     }
 
     @Transactional(timeout = 1)
     public void triggerTimeout() throws InterruptedException {
         Thread.sleep(950);
-        Point p = new Point(1,1);
+        Point p = new Point(1, 1);
         repo.save(p);
     }
 
@@ -82,16 +82,16 @@ public class PointService {
         p.setX(100);
         repo.save(p);
         throw new IOException();
-        //no change to DB
+        // no change to DB
     }
 
     @Transactional(noRollbackFor = InterruptedException.class)
-    public void noRollbackFor() throws InterruptedException{
+    public void noRollbackFor() throws InterruptedException {
         Point p = repo.getOne(2L);
         p.setX(4);
         p.setX(20);
         repo.save(p);
         throw new InterruptedException();
-        //changes still commit
+        // changes still commit
     }
 }

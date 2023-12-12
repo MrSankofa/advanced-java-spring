@@ -1,9 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.introducingrepositories.jparepository;
 
-
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Getter
@@ -27,7 +26,7 @@ public class SoftDrink {
     @PrePersist
     @PreUpdate
     public void confirmRating() {
-        if(rating < 0 || rating > 10) {
+        if (rating < 0 || rating > 10) {
             throw new IllegalStateException("Rating must be between 0 and 10!");
         }
     }

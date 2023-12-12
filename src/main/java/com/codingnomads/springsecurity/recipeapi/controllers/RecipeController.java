@@ -1,18 +1,16 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.controllers;
 
-
+import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchRecipeException;
 import com.codingnomads.springsecurity.recipeapi.models.Recipe;
 import com.codingnomads.springsecurity.recipeapi.services.RecipeService;
+import java.security.Principal;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchRecipeException;
-
-import java.security.Principal;
-import java.util.ArrayList;
-
 
 @RestController
 @RequestMapping("/recipes")
@@ -65,7 +63,8 @@ public class RecipeController {
     public ResponseEntity<?> deleteRecipeById(@PathVariable("id") Long id) {
         try {
             Recipe deletedRecipe = recipeService.deleteRecipeById(id);
-            return ResponseEntity.ok("The recipe with ID " + deletedRecipe.getId() + " and name " + deletedRecipe.getName() + " was deleted");
+            return ResponseEntity.ok("The recipe with ID " + deletedRecipe.getId() + " and name "
+                    + deletedRecipe.getName() + " was deleted");
         } catch (NoSuchRecipeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

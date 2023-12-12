@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.returningdatatoclient.responsebody.model;
 
 import lombok.AllArgsConstructor;

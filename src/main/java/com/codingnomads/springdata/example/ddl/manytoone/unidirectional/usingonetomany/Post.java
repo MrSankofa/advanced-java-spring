@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.manytoone.unidirectional.usingonetomany;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.List;
+import lombok.*;
 
 @Entity
 @Getter

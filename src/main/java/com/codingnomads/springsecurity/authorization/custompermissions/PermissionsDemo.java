@@ -1,16 +1,16 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.custompermissions;
 
+import com.codingnomads.springsecurity.authorization.custompermissions.models.MyGrantedAuthority;
+import com.codingnomads.springsecurity.authorization.custompermissions.models.User;
+import com.codingnomads.springsecurity.authorization.custompermissions.repositories.AuthRepository;
+import com.codingnomads.springsecurity.authorization.custompermissions.repositories.UserRepository;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.codingnomads.springsecurity.authorization.custompermissions.models.MyGrantedAuthority;
-import com.codingnomads.springsecurity.authorization.custompermissions.models.User;
-import com.codingnomads.springsecurity.authorization.custompermissions.repositories.AuthRepository;
-import com.codingnomads.springsecurity.authorization.custompermissions.repositories.UserRepository;
-
-import java.util.Arrays;
 
 @SpringBootApplication
 public class PermissionsDemo implements CommandLineRunner {
@@ -51,4 +51,3 @@ public class PermissionsDemo implements CommandLineRunner {
         }
     }
 }
-

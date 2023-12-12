@@ -1,9 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.querydsl.repository;
 
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
-import org.springframework.stereotype.Repository;
 import com.codingnomads.springdata.example.querydsl.models.Area;
 import com.codingnomads.springdata.example.querydsl.models.QArea;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class AreaCustomRepositoryImpl extends QuerydslRepositorySupport implements AreaCustomRepository {

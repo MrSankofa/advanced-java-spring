@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.usingqueryannotation;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class QueryApplication implements CommandLineRunner{
+public class QueryApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(QueryApplication.class);
@@ -21,6 +22,5 @@ public class QueryApplication implements CommandLineRunner{
         plantService.saveStuff();
 
         plantService.getStuff();
-
     }
 }

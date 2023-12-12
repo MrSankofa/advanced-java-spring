@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.manytomany.bidirectional;
 
 import org.springframework.boot.SpringApplication;

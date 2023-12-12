@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.corespring.examples.autowiredannotation;
 
 import lombok.ToString;
@@ -5,5 +6,4 @@ import org.springframework.stereotype.Component;
 
 @Component("geforce")
 @ToString
-public class GeForce implements VideoCard {
-}
+public class GeForce implements VideoCard {}

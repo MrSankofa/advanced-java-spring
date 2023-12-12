@@ -1,17 +1,16 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.services;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
 import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchRecipeException;
 import com.codingnomads.springsecurity.recipeapi.models.Recipe;
 import com.codingnomads.springsecurity.recipeapi.models.securitymodels.CustomUserDetails;
 import com.codingnomads.springsecurity.recipeapi.repositories.RecipeRepo;
-
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 @Service
 public class RecipeService {
@@ -21,7 +20,8 @@ public class RecipeService {
 
     @Transactional
     public Recipe createNewRecipe(Recipe recipe) throws IllegalStateException {
-        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        CustomUserDetails userDetails = (CustomUserDetails)
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(userDetails);
         recipe.validate();
         recipe = recipeRepo.save(recipe);
@@ -77,7 +77,7 @@ public class RecipeService {
         try {
             if (forceIdCheck) {
                 Recipe r = getRecipeById(recipe.getId());
-                //make sure author never changes from original
+                // make sure author never changes from original
                 recipe.setUser(r.getUser());
             }
 
@@ -86,8 +86,8 @@ public class RecipeService {
             savedRecipe.generateLocationURI();
             return savedRecipe;
         } catch (NoSuchRecipeException e) {
-            throw new NoSuchRecipeException("The recipe you passed in did not have an ID found in the database." +
-                    " Double check that it is correct. Or maybe you meant to POST a recipe not PATCH one");
+            throw new NoSuchRecipeException("The recipe you passed in did not have an ID found in the database."
+                    + " Double check that it is correct. Or maybe you meant to POST a recipe not PATCH one");
         }
     }
 }

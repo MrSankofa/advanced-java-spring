@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.ioc.lab.completed;
 
 import lombok.AllArgsConstructor;

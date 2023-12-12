@@ -1,10 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.corespring.examples.valueannotation;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 @Component
 public class Nomad {
@@ -45,7 +45,12 @@ public class Nomad {
     }
 
     public String output() {
-        return "Spring Developer is building awesome software using: ".concat(jdk).concat(" , ").concat(framework).concat(" and ").concat(ide);
+        return "Spring Developer is building awesome software using: "
+                .concat(jdk)
+                .concat(" , ")
+                .concat(framework)
+                .concat(" and ")
+                .concat(ide);
     }
 
     public List<String> getWorkingDays() {

@@ -1,11 +1,11 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.jpa.domain;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -19,12 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(
-            fetch = FetchType.LAZY,
-            optional = false,
-            cascade = CascadeType.ALL,
-            mappedBy = "user"
-    )
+    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL, mappedBy = "user")
     @JoinColumn(name = "user_id", nullable = false)
     private UserDetail userDetail;
 

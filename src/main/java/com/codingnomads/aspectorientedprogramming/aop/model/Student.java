@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.aspectorientedprogramming.aop.model;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
@@ -23,5 +23,4 @@ public class Student {
 
     @Column(name = "email")
     private String email;
-
 }

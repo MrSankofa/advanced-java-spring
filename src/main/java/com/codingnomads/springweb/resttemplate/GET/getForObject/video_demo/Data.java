@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.resttemplate.GET.getForObject.video_demo;
 
 @lombok.Data
@@ -9,5 +10,4 @@ public class Data {
     String last_name;
     long created_at;
     long updated_at;
-
 }

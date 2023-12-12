@@ -1,12 +1,12 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.lab_complete.models;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
@@ -42,17 +42,10 @@ public class Area implements Serializable {
 
     @Override
     public String toString() {
-        return "Area{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", pointsOfInterest=" + pointsOfInterest +
-                '}';
+        return "Area{" + "id=" + id + ", code='" + code + '\'' + ", pointsOfInterest=" + pointsOfInterest + '}';
     }
 
     public String toStringWithoutPoi() {
-        return "Area{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                '}';
+        return "Area{" + "id=" + id + ", code='" + code + '\'' + '}';
     }
 }

@@ -1,24 +1,23 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.mockingmethods.services;
 
-import com.codingnomads.springtest.mockingmethods.services.RecipeService;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.when;
+
 import com.codingnomads.springtest.mockingmethods.RecipeMain;
 import com.codingnomads.springtest.mockingmethods.exceptions.NoSuchRecipeException;
 import com.codingnomads.springtest.mockingmethods.models.Ingredient;
 import com.codingnomads.springtest.mockingmethods.models.Recipe;
 import com.codingnomads.springtest.mockingmethods.models.Step;
 import com.codingnomads.springtest.mockingmethods.repositories.RecipeRepo;
-
 import java.util.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(classes = RecipeMain.class)
 @ActiveProfiles("test")
@@ -39,13 +38,16 @@ public class RecipeServiceUnitTest {
                 .minutesToMake(5)
                 .ingredients(Set.of(
                         Ingredient.builder().amount("1").name("pasta").build(),
-                        Ingredient.builder().amount("1").name("pasta sauce").build())
-                )
+                        Ingredient.builder().amount("1").name("pasta sauce").build()))
                 .steps(Set.of(Step.builder()
-                        .description("Boil water").stepNumber(1)
-                        .description("Add and cook pasta").stepNumber(2)
-                        .description("Drain water from pasta").stepNumber(3)
-                        .description("Add sauce").stepNumber(4)
+                        .description("Boil water")
+                        .stepNumber(1)
+                        .description("Add and cook pasta")
+                        .stepNumber(2)
+                        .description("Drain water from pasta")
+                        .stepNumber(3)
+                        .description("Add sauce")
+                        .stepNumber(4)
                         .description("Enjoy!")
                         .build()))
                 .build();
@@ -66,43 +68,46 @@ public class RecipeServiceUnitTest {
 
     @Test
     public void testGetRecipeByNameSuccessBehavior() throws Exception {
-        when(recipeRepo.findByNameContaining(anyString())).thenReturn(
-                new ArrayList<>(Arrays.asList(
+        when(recipeRepo.findByNameContaining(anyString()))
+                .thenReturn(new ArrayList<>(Arrays.asList(
                         Recipe.builder()
                                 .id(1L)
                                 .name("milkshake")
                                 .difficultyRating(1)
                                 .minutesToMake(3)
-                                .ingredients(Set.of(
-                                        Ingredient.builder().amount("1 liter").name("milk").build())
-                                )
-                                .steps(Set.of(Step.builder().description("shake the milk for 2 minutes").stepNumber(1).build()))
+                                .ingredients(Set.of(Ingredient.builder()
+                                        .amount("1 liter")
+                                        .name("milk")
+                                        .build()))
+                                .steps(Set.of(Step.builder()
+                                        .description("shake the milk for 2 minutes")
+                                        .stepNumber(1)
+                                        .build()))
                                 .build(),
                         Recipe.builder()
                                 .id(2L)
                                 .name("glass of milk")
                                 .difficultyRating(1)
                                 .minutesToMake(1)
-                                .build()
-
-                ))
-        );
+                                .build())));
 
         ArrayList<Recipe> returnedRecipes = recipeService.getRecipesByName("milk");
 
         assertThat(returnedRecipes.size()).isEqualTo(2);
         assertThat(returnedRecipes.get(0).getLocationURI().toURL().toString()).isNotNull();
         assertThat(returnedRecipes.get(1).getLocationURI().toURL().toString()).isNotNull();
-
     }
 
     @Test
     public void testGetRecipeByNameFailureBehavior() {
         when(recipeRepo.findByNameContaining(anyString())).thenReturn(new ArrayList<>());
 
-        assertThrows(NoSuchRecipeException.class, () -> {
-            recipeService.getRecipesByName("some name. idk");
-        }, "No recipes could be found with that name");
+        assertThrows(
+                NoSuchRecipeException.class,
+                () -> {
+                    recipeService.getRecipesByName("some name. idk");
+                },
+                "No recipes could be found with that name");
     }
 
     @Test
@@ -115,13 +120,16 @@ public class RecipeServiceUnitTest {
                 .minutesToMake(5)
                 .ingredients(Set.of(
                         Ingredient.builder().amount("1").name("pasta").build(),
-                        Ingredient.builder().amount("1").name("pasta sauce").build())
-                )
+                        Ingredient.builder().amount("1").name("pasta sauce").build()))
                 .steps(Set.of(Step.builder()
-                        .description("Boil water").stepNumber(1)
-                        .description("Add and cook pasta").stepNumber(2)
-                        .description("Drain water from pasta").stepNumber(3)
-                        .description("Add sauce").stepNumber(4)
+                        .description("Boil water")
+                        .stepNumber(1)
+                        .description("Add and cook pasta")
+                        .stepNumber(2)
+                        .description("Drain water from pasta")
+                        .stepNumber(3)
+                        .description("Add sauce")
+                        .stepNumber(4)
                         .description("Enjoy!")
                         .build()))
                 .build();
@@ -138,10 +146,12 @@ public class RecipeServiceUnitTest {
     public void testGetAllRecipesFailureBehavior() {
         when(recipeRepo.findAll()).thenReturn(new ArrayList<>());
 
-        assertThrows(NoSuchRecipeException.class, () -> {
-            recipeService.getAllRecipes();
-        }, "There are no recipes yet :( feel free to add one though");
-
+        assertThrows(
+                NoSuchRecipeException.class,
+                () -> {
+                    recipeService.getAllRecipes();
+                },
+                "There are no recipes yet :( feel free to add one though");
     }
 
     @Test
@@ -152,16 +162,17 @@ public class RecipeServiceUnitTest {
                 .difficultyRating(1)
                 .minutesToMake(5)
                 .ingredients(Set.of(
-                        Ingredient.builder().amount("0.5 liters").name("water").build()
-                ))
-                .steps(Set.of(
-                        Step.builder().description("Drink water before you go to bed!").stepNumber(1).build())
-                )
+                        Ingredient.builder().amount("0.5 liters").name("water").build()))
+                .steps(Set.of(Step.builder()
+                        .description("Drink water before you go to bed!")
+                        .stepNumber(1)
+                        .build()))
                 .build();
 
         when(recipeRepo.save(any(Recipe.class))).thenReturn(hangoverCureRecipe);
 
-        assertThat(recipeService.createNewRecipe(hangoverCureRecipe).getLocationURI()).isNotNull();
+        assertThat(recipeService.createNewRecipe(hangoverCureRecipe).getLocationURI())
+                .isNotNull();
 
         hangoverCureRecipe.generateLocationURI();
         assertThat(recipeService.createNewRecipe(hangoverCureRecipe)).isEqualTo(hangoverCureRecipe);
@@ -182,10 +193,5 @@ public class RecipeServiceUnitTest {
         assertThrows(IllegalStateException.class, () -> {
             recipeService.createNewRecipe(shouldFailRecipe);
         });
-
-
     }
-
-
-
 }

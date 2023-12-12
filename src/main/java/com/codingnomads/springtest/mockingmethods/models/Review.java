@@ -1,9 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.mockingmethods.models;
 
-import lombok.*;
-
 import jakarta.persistence.*;
-
+import lombok.*;
 
 @Entity
 @Getter
@@ -25,9 +24,8 @@ public class Review {
 
     private String description;
 
-
     public void setRating(int rating) {
-        if(rating <= 0 || rating > 10) {
+        if (rating <= 0 || rating > 10) {
             throw new IllegalStateException("Rating must be between 0 and 10");
         }
 

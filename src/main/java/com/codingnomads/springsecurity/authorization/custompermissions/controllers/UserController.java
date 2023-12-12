@@ -1,12 +1,13 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.custompermissions.controllers;
 
+import com.codingnomads.springsecurity.authorization.custompermissions.models.User;
+import com.codingnomads.springsecurity.authorization.custompermissions.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import com.codingnomads.springsecurity.authorization.custompermissions.models.User;
-import com.codingnomads.springsecurity.authorization.custompermissions.services.UserService;
 
 @Controller
 public class UserController {
@@ -28,10 +29,10 @@ public class UserController {
 
     @GetMapping("/user/delete/{id}")
     @ResponseBody
-    @PreAuthorize("hasPermission(#id, 'com.codingnomads.springsecurity.authorization.custompermissions.models.User', 'DELETE')")
+    @PreAuthorize(
+            "hasPermission(#id, 'com.codingnomads.springsecurity.authorization.custompermissions.models.User', 'DELETE')")
     public String deleteEntity(@PathVariable Long id) {
         userService.deleteUser(id);
         return ("deleted user with id: " + id);
     }
-
 }

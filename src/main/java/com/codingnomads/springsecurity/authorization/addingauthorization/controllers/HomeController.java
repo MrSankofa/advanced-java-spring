@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.addingauthorization.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,17 +33,17 @@ public class HomeController {
 
     @GetMapping("/mas")
     @PreAuthorize("#id != 1")
-    public String testMas(int id){
+    public String testMas(int id) {
         return "authorization/home";
     }
 
     /*
-        Method Security Annotations
+       Method Security Annotations
 
-        @RolesAllowed("USER")
-        @PreAuthorize("#id != 1")
-        @PostAuthorize("returnObject.ownerUsername == authentication.principal.username")
-        @PreFilter(value = "filterObject != shutdown", filterTarget = "commands")
-        @PostFilter("filterObject.id <= 20")
-     */
+       @RolesAllowed("USER")
+       @PreAuthorize("#id != 1")
+       @PostAuthorize("returnObject.ownerUsername == authentication.principal.username")
+       @PreFilter(value = "filterObject != shutdown", filterTarget = "commands")
+       @PostFilter("filterObject.id <= 20")
+    */
 }

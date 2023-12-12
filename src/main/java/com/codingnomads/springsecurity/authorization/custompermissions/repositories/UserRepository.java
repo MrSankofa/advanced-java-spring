@@ -1,7 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.custompermissions.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import com.codingnomads.springsecurity.authorization.custompermissions.models.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

@@ -1,5 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.wrappingup.multipartdata.controllers;
 
+import com.codingnomads.springweb.wrappingup.multipartdata.models.DatabaseFile;
+import com.codingnomads.springweb.wrappingup.multipartdata.services.FileService;
+import java.nio.file.NoSuchFileException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -9,10 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import com.codingnomads.springweb.wrappingup.multipartdata.models.DatabaseFile;
-import com.codingnomads.springweb.wrappingup.multipartdata.services.FileService;
-
-import java.nio.file.NoSuchFileException;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,7 +40,9 @@ public class FileController {
         } else {
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(databaseFile.getFileType()))
-                    .header(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment; filename=\"%s\"", databaseFile.getFileName()))
+                    .header(
+                            HttpHeaders.CONTENT_DISPOSITION,
+                            String.format("attachment; filename=\"%s\"", databaseFile.getFileName()))
                     .body(new ByteArrayResource(databaseFile.getData()));
         }
     }
@@ -50,13 +52,13 @@ public class FileController {
 
         if (fileService.fileDoesNotExist(fileId)) {
             return ResponseEntity.badRequest()
-                    .body(new NoSuchFileException("The ID you passed in was not valid. Where you trying to upload a new file?"));
+                    .body(new NoSuchFileException(
+                            "The ID you passed in was not valid. Where you trying to upload a new file?"));
         } else {
             try {
                 return ResponseEntity.ok(fileService.updateFile(fileId, file));
             } catch (Exception ex) {
-                return ResponseEntity.badRequest()
-                        .body(ex.getMessage());
+                return ResponseEntity.badRequest().body(ex.getMessage());
             }
         }
     }
@@ -64,12 +66,10 @@ public class FileController {
     @DeleteMapping("/deleteFile/{id}")
     public ResponseEntity<?> deleteFileById(@PathVariable("id") Long fileId) {
         if (fileService.fileDoesNotExist(fileId)) {
-            return ResponseEntity.badRequest()
-                    .body(new NoSuchFileException("The ID you passed in was not valid."));
+            return ResponseEntity.badRequest().body(new NoSuchFileException("The ID you passed in was not valid."));
         } else {
             fileService.deleteFile(fileId);
             return ResponseEntity.ok("File with ID " + fileId + " was deleted.");
         }
     }
 }
-

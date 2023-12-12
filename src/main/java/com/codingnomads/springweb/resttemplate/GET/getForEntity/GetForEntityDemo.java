@@ -1,6 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.resttemplate.GET.getForEntity;
 
 import com.codingnomads.springweb.resttemplate.GET.models.QuoteTemplate;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,8 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
 
 @SpringBootApplication
 public class GetForEntityDemo {

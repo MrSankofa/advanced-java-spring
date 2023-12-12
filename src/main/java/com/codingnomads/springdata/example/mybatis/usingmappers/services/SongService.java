@@ -1,12 +1,13 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.usingmappers.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.codingnomads.springdata.example.mybatis.usingmappers.mappers.ArtistMapper;
 import com.codingnomads.springdata.example.mybatis.usingmappers.mappers.SongMapper;
 import com.codingnomads.springdata.example.mybatis.usingmappers.models.Artist;
 import com.codingnomads.springdata.example.mybatis.usingmappers.models.Song;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SongService {
@@ -25,22 +26,22 @@ public class SongService {
     }
 
     public void insertData() {
-        //create artist
+        // create artist
         Artist tyler = new Artist();
         tyler.setName("Tyler, The Creator");
         tyler.setBio("Insert Bio Here");
 
-        //enter artist first since song requires artist ID
+        // enter artist first since song requires artist ID
         artistMapper.insertNewArtist(tyler);
 
-        //create song using artist
+        // create song using artist
         Song earfquake = new Song();
         earfquake.setName("EARFQUAKE");
         earfquake.setAlbumName("IGOR");
         earfquake.setArtist(tyler);
         earfquake.setSongLength(190);
 
-        //insert new song
+        // insert new song
         songMapper.insertNewSong(earfquake);
 
         Song seeYouAgain = new Song();
@@ -49,24 +50,24 @@ public class SongService {
         seeYouAgain.setArtist(tyler);
         seeYouAgain.setSongLength(180);
 
-        //insert new song. note there are no detachment issues
+        // insert new song. note there are no detachment issues
         songMapper.insertNewSong(seeYouAgain);
     }
 
     public void queryData() {
 
-        //get a song by name
+        // get a song by name
         System.out.println(songMapper.getSongsByName("EARFQUAKE"));
 
-        //get a song by ID
+        // get a song by ID
         System.out.println(songMapper.getSongById(1L));
 
-        //get an artist (remember songs excluded from toString())
+        // get an artist (remember songs excluded from toString())
         Artist artist = artistMapper.getArtistById(1L);
         System.out.println(artist);
 
-        //print artists songs
-        for(Song s: artist.getSongs()) {
+        // print artists songs
+        for (Song s : artist.getSongs()) {
             System.out.println(s);
         }
     }

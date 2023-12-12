@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.ioc.lab.completed;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class CodingNomadDemo {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(
-                CodingNomadConfiguration.class);
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(CodingNomadConfiguration.class);
         CodingNomad codingNomad = ctx.getBean(CodingNomad.class);
         System.out.println(codingNomad.createAwesomeSoftware());
     }
 }
-

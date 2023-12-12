@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.extraexample.models;
 
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
 
 @Data
 public class Lesson {

@@ -1,13 +1,13 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.gettingdatafromclient.requestparam.controllers;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
 import com.codingnomads.springweb.gettingdatafromclient.requestparam.models.Task;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -26,15 +26,14 @@ public class TaskController {
 
     @GetMapping(value = "/request-param-optional", produces = MediaType.APPLICATION_JSON_VALUE)
     public Task getTaskWithOptionalRequestPram(@RequestParam(name = "id", required = false) Long taskId) {
-        if (taskId != null){
+        if (taskId != null) {
             return Task.builder().id(taskId).name("Task One").build();
-        }
-        else
-            return Task.builder().name("Task One").build();
+        } else return Task.builder().name("Task One").build();
     }
 
     @GetMapping(value = "/default-request-param-value", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Task getTaskWithDefaultRequestParam(@RequestParam(name = "name", required = false, defaultValue = "Task One") String taskName) {
+    public Task getTaskWithDefaultRequestParam(
+            @RequestParam(name = "name", required = false, defaultValue = "Task One") String taskName) {
         return Task.builder().name(taskName).build();
     }
 

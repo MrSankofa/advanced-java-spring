@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.mockingmethods;
 
 import org.springframework.boot.SpringApplication;
@@ -9,5 +10,4 @@ public class RecipeMain {
     public static void main(String[] args) {
         SpringApplication.run(RecipeMain.class);
     }
-
 }

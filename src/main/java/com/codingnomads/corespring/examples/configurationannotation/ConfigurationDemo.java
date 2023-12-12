@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.corespring.examples.configurationannotation;
 
 import org.springframework.context.ApplicationContext;
@@ -14,8 +15,8 @@ public class ConfigurationDemo {
 
     private static void isBeanPresent(String... beans) {
         for (String beanName : beans) {
-            System.out.println("Is " + beanName + " in ApplicationContext: " +
-                    applicationContext.containsBean(beanName));
+            System.out.println(
+                    "Is " + beanName + " in ApplicationContext: " + applicationContext.containsBean(beanName));
         }
     }
 }

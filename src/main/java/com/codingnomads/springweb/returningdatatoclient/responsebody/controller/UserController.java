@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.returningdatatoclient.responsebody.controller;
 
 import com.codingnomads.springweb.returningdatatoclient.responsebody.model.User;
@@ -16,23 +17,22 @@ public class UserController {
             .email("dev@codingnomads.co")
             .build();
 
-    //using ResponseBody to return a POJO
+    // using ResponseBody to return a POJO
     @ResponseBody
     @GetMapping("/response-body")
     public User userResponseBody() {
         return user;
     }
 
-    //using ResponseEntity to return POJO
+    // using ResponseEntity to return POJO
     @GetMapping("/response-entity")
     public ResponseEntity<User> userResponseEntity() {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    //returning a POJO without ResponseBody or using a ResponseEntity - error expected
+    // returning a POJO without ResponseBody or using a ResponseEntity - error expected
     @GetMapping("/user")
     public User user() {
         return user;
     }
-
 }

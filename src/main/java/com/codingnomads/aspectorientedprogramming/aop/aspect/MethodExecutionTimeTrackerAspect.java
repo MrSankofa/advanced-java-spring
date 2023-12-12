@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.aspectorientedprogramming.aop.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -19,7 +20,8 @@ public class MethodExecutionTimeTrackerAspect {
         long startTime = System.currentTimeMillis();
         Object result = joinPoint.proceed();
         long elapsedTime = System.currentTimeMillis() - startTime;
-        LOGGER.info("Execution time of method {} is {} ms", joinPoint.getSignature().getName(), elapsedTime);
+        LOGGER.info(
+                "Execution time of method {} is {} ms", joinPoint.getSignature().getName(), elapsedTime);
         return result;
     }
 }

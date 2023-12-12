@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.derivedquerymethods.codewarriorexample;
 
 import org.springframework.data.jpa.repository.JpaRepository;

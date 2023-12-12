@@ -1,10 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.aspectorientedprogramming.aop.repository;
 
+import com.codingnomads.aspectorientedprogramming.aop.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.codingnomads.aspectorientedprogramming.aop.model.Student;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {
-
-}
+public interface StudentRepository extends JpaRepository<Student, Long> {}

@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.exceptions;
 
 public class NoSuchReviewException extends Exception {
@@ -6,7 +7,5 @@ public class NoSuchReviewException extends Exception {
         super(message);
     }
 
-    public NoSuchReviewException() {
-
-    }
+    public NoSuchReviewException() {}
 }

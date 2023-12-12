@@ -1,11 +1,11 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.models;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user_meta")

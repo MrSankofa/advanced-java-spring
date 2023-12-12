@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springfundamentals.example;
 
 import org.springframework.stereotype.Controller;
@@ -13,12 +14,12 @@ public class StatusController {
     }
 
     @GetMapping("/arrival")
-    public String sayHello () {
+    public String sayHello() {
         return statusService.processStatus(true);
     }
 
     @GetMapping("/departure")
-    public String sayGoodbye () {
+    public String sayGoodbye() {
         return statusService.processStatus(false);
     }
 }

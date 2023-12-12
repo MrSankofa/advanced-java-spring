@@ -1,12 +1,12 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.gettingdatafromclient.pathvariable.controllers;
 
+import com.codingnomads.springweb.gettingdatafromclient.pathvariable.models.Task;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import com.codingnomads.springweb.gettingdatafromclient.pathvariable.models.Task;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -14,9 +14,10 @@ import java.util.Map;
 public class TaskController {
 
     @GetMapping(value = "/{id}/{name}/{completed}")
-    public Task getTask(@PathVariable(name = "id") Long id,
-                        @PathVariable(name = "name") String name,
-                        @PathVariable(name = "completed") Boolean completed) {
+    public Task getTask(
+            @PathVariable(name = "id") Long id,
+            @PathVariable(name = "name") String name,
+            @PathVariable(name = "completed") Boolean completed) {
 
         return Task.builder().id(id).name(name).completed(completed).build();
     }
@@ -49,4 +50,3 @@ public class TaskController {
         return name;
     }
 }
-

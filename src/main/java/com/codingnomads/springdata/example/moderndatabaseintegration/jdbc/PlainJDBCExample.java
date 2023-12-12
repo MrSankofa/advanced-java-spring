@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.moderndatabaseintegration.jdbc;
 
+import java.sql.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.sql.*;
 
 public class PlainJDBCExample {
 
@@ -20,10 +20,8 @@ public class PlainJDBCExample {
             ResultSet rs = statement.executeQuery(customQuery);
 
             while (rs.next()) {
-                System.out.println(new Employee(
-                        rs.getInt("id"),
-                        rs.getString("first_name"),
-                        rs.getString("last_name")));
+                System.out.println(
+                        new Employee(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name")));
             }
 
             rs.close();
@@ -55,5 +53,3 @@ class Employee {
     private String firstName;
     private String lastName;
 }
-
-

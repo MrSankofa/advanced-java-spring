@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.ioc.examples.setterinjection;
 
 import lombok.AllArgsConstructor;

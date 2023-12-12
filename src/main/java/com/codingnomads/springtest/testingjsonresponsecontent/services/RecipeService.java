@@ -1,15 +1,14 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.testingjsonresponsecontent.services;
 
-
 import com.codingnomads.springtest.testingjsonresponsecontent.exceptions.NoSuchRecipeException;
-import com.codingnomads.springtest.testingjsonresponsecontent.repositories.RecipeRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.codingnomads.springtest.testingjsonresponsecontent.models.Recipe;
-
+import com.codingnomads.springtest.testingjsonresponsecontent.repositories.RecipeRepo;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class RecipeService {
@@ -28,7 +27,7 @@ public class RecipeService {
     public Recipe getRecipeById(Long id) throws NoSuchRecipeException {
         Optional<Recipe> recipeOptional = recipeRepo.findById(id);
 
-        if(recipeOptional.isEmpty()) {
+        if (recipeOptional.isEmpty()) {
             throw new NoSuchRecipeException("No recipe with ID " + id + " could be found");
         }
 
@@ -40,11 +39,11 @@ public class RecipeService {
     public ArrayList<Recipe> getRecipesByName(String name) throws NoSuchRecipeException {
         ArrayList<Recipe> matchingRecipes = recipeRepo.findByNameContaining(name);
 
-        if(matchingRecipes.isEmpty()) {
+        if (matchingRecipes.isEmpty()) {
             throw new NoSuchRecipeException("No recipes could be found with that name.");
         }
 
-        for(Recipe r: matchingRecipes) {
+        for (Recipe r : matchingRecipes) {
             r.generateLocationURI();
         }
 
@@ -52,13 +51,13 @@ public class RecipeService {
     }
 
     public ArrayList<Recipe> getAllRecipes() throws NoSuchRecipeException {
-       ArrayList<Recipe> recipes = new ArrayList<>(recipeRepo.findAll());
+        ArrayList<Recipe> recipes = new ArrayList<>(recipeRepo.findAll());
 
-       if(recipes.isEmpty()) {
-           throw new NoSuchRecipeException("There are no recipes yet :( feel free to add one though");
-       }
+        if (recipes.isEmpty()) {
+            throw new NoSuchRecipeException("There are no recipes yet :( feel free to add one though");
+        }
 
-       return recipes;
+        return recipes;
     }
 
     @Transactional
@@ -67,7 +66,7 @@ public class RecipeService {
             Recipe recipe = getRecipeById(id);
             recipeRepo.deleteById(id);
             return recipe;
-        }catch (NoSuchRecipeException e) {
+        } catch (NoSuchRecipeException e) {
             throw new NoSuchRecipeException(e.getMessage() + ". Could not delete.");
         }
     }
@@ -76,7 +75,7 @@ public class RecipeService {
     public Recipe updateRecipe(Recipe recipe, boolean forceIdCheck) throws NoSuchRecipeException {
         try {
 
-            if(forceIdCheck) {
+            if (forceIdCheck) {
                 getRecipeById(recipe.getId());
             }
 
@@ -84,11 +83,9 @@ public class RecipeService {
             Recipe savedRecipe = recipeRepo.save(recipe);
             savedRecipe.generateLocationURI();
             return savedRecipe;
-        }catch (NoSuchRecipeException e) {
-            throw new NoSuchRecipeException("The recipe you passed in did not have an ID found in the database." +
-                    " Double check that it is correct. Or maybe you meant to POST a recipe not PATCH one");
+        } catch (NoSuchRecipeException e) {
+            throw new NoSuchRecipeException("The recipe you passed in did not have an ID found in the database."
+                    + " Double check that it is correct. Or maybe you meant to POST a recipe not PATCH one");
         }
     }
-
 }
-

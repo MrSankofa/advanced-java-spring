@@ -1,10 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.onetoone.bidirectional;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "drivers")
@@ -21,12 +21,11 @@ public class Driver {
     private String name;
 
     @OneToOne(
-            //a car will only be retrieved from the database when it is explicitly accessed
+            // a car will only be retrieved from the database when it is explicitly accessed
             fetch = FetchType.LAZY,
-            //you must specify a Car before you save the Driver
+            // you must specify a Car before you save the Driver
             optional = false,
-            //All save/persist actions will be propagated through to the Car.
-            cascade = CascadeType.PERSIST
-    )
+            // All save/persist actions will be propagated through to the Car.
+            cascade = CascadeType.PERSIST)
     private Car car;
 }

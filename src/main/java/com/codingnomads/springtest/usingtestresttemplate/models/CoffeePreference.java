@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.usingtestresttemplate.models;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Getter
@@ -33,7 +33,7 @@ public class CoffeePreference {
 
     public void setIntensity(int intensity) {
 
-        if(intensity < 0 || intensity > 10) {
+        if (intensity < 0 || intensity > 10) {
             throw new IllegalStateException("Intensity must be between 0 and 10");
         }
 

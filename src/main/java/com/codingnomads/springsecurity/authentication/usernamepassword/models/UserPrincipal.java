@@ -1,11 +1,11 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authentication.usernamepassword.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import jakarta.persistence.*;
 import java.util.List;
+import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
@@ -28,10 +28,10 @@ public class UserPrincipal implements UserDetails {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_authority_join_table",
+    @JoinTable(
+            name = "user_authority_join_table",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "authority_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private List<Authority> authorities;
 
     private boolean accountNonExpired;

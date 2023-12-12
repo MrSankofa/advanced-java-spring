@@ -1,10 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.joincolumn;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "examples")
@@ -17,14 +17,15 @@ public class Example {
     @GeneratedValue
     private Long id;
 
-    //define a one-to-many relationship with a few customizations
+    // define a one-to-many relationship with a few customizations
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    //use @JoinColumns to indicate multiple join columns are needed in the examples table
+    // use @JoinColumns to indicate multiple join columns are needed in the examples table
     @JoinColumns({
-            //define the first join column. It will be called referenced_id and references the id column in the user table
-            @JoinColumn(name = "references_id", referencedColumnName = "id"),
-            //define the second join column. It will be called references_name and references the name column in the user table
-            @JoinColumn(name = "references_name", referencedColumnName = "name")
+        // define the first join column. It will be called referenced_id and references the id column in the user table
+        @JoinColumn(name = "references_id", referencedColumnName = "id"),
+        // define the second join column. It will be called references_name and references the name column in the user
+        // table
+        @JoinColumn(name = "references_name", referencedColumnName = "name")
     })
     private User user;
 }

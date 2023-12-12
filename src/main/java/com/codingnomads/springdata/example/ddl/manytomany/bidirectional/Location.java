@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.manytomany.bidirectional;
-
-import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.Set;
+import lombok.*;
 
 @Entity
 @Getter
@@ -24,7 +24,7 @@ public class Location {
     @Column(nullable = false)
     private Long longitude;
 
-    //many to many annotation defers to the locations field in the Post class
+    // many to many annotation defers to the locations field in the Post class
     @ManyToMany(mappedBy = "locations")
     private Set<Post> posts;
 }

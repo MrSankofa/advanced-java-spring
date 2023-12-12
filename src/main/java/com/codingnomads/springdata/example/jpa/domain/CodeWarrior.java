@@ -1,13 +1,13 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.jpa.domain;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "code_warriors")
@@ -23,11 +23,7 @@ public class CodeWarrior {
     @Column
     private String name;
 
-    @OneToMany(
-            mappedBy = "codeWarrior",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "codeWarrior", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Weapon> weapons = new ArrayList<>();
 

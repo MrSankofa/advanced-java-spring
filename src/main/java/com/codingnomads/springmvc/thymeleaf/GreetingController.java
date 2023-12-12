@@ -1,18 +1,18 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springmvc.thymeleaf;
 
+import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-
 @Controller
 public class GreetingController {
 
-    @GetMapping({ "/", "/index" })
+    @GetMapping({"/", "/index"})
     public String index(Model model) {
         model.addAttribute("name", "Spring Developer!");
-        return "greeting"; 
+        return "greeting";
     }
 
     @GetMapping("/subjects")

@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.aspectorientedprogramming.aop.aspect;
 
 import java.lang.annotation.ElementType;
@@ -7,4 +8,4 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface TrackMethodExecutionTime { }
+public @interface TrackMethodExecutionTime {}

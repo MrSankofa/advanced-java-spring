@@ -1,11 +1,11 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.manytomany.jointableexample;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import jakarta.persistence.*;
 import java.util.Set;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -26,7 +26,7 @@ public class Location {
     @Column(nullable = false)
     private Long longitude;
 
-    //many to many annotation defers to the locations field in the Post class
+    // many to many annotation defers to the locations field in the Post class
     @ManyToMany
     private Set<Post> posts;
 }

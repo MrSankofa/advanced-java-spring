@@ -1,14 +1,14 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.ioc.lab.completed;
 
+import java.text.MessageFormat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.text.MessageFormat;
-
-//@Component
+// @Component
 @RequiredArgsConstructor
 public class CodingNomad {
-    
+
     // automatically injected due to being private final
     private final JDK jdk;
     // automatically injected due to being private final
@@ -30,20 +30,19 @@ public class CodingNomad {
     OperatingSystem operatingSystem;
 
     public String createAwesomeSoftware() {
-        return MessageFormat
-                .format("This coding nomad is creating awesome software using, " +
-                                "IDE: ({0}:{1}), JDK: ({2}:{3}), Framework: ({4}:{5}), " +
-                                "OS: ({6}:{7}), Sound System: ({8}:{9})",
-                        ide.getName(),
-                        ide.getVersion(),
-                        jdk.getName(),
-                        jdk.getVersion(),
-                        framework.getName(),
-                        framework.getVersion(),
-                        operatingSystem.getName(),
-                        operatingSystem.getVersion(),
-                        soundSystem.getBrand(),
-                        soundSystem.getType()
-                );
+        return MessageFormat.format(
+                "This coding nomad is creating awesome software using, "
+                        + "IDE: ({0}:{1}), JDK: ({2}:{3}), Framework: ({4}:{5}), "
+                        + "OS: ({6}:{7}), Sound System: ({8}:{9})",
+                ide.getName(),
+                ide.getVersion(),
+                jdk.getName(),
+                jdk.getVersion(),
+                framework.getName(),
+                framework.getVersion(),
+                operatingSystem.getName(),
+                operatingSystem.getVersion(),
+                soundSystem.getBrand(),
+                soundSystem.getType());
     }
 }

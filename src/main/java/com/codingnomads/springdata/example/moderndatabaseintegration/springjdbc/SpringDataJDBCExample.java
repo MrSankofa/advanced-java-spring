@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.moderndatabaseintegration.springjdbc;
 
 import lombok.AllArgsConstructor;
@@ -21,13 +22,12 @@ public class SpringDataJDBCExample implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        template.query("SELECT * FROM EMPLOYEES", new Object[]{},
-            (rs, rowNum) -> new Employee(
-                    rs.getInt("id"),
-                    rs.getString("first_name"),
-                    rs.getString("last_name")
-            )
-        ).forEach(employee -> System.out.println(employee.toString()));
+        template.query(
+                        "SELECT * FROM EMPLOYEES",
+                        new Object[] {},
+                        (rs, rowNum) ->
+                                new Employee(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name")))
+                .forEach(employee -> System.out.println(employee.toString()));
     }
 }
 
@@ -38,4 +38,3 @@ class Employee {
     private String firstName;
     private String lastName;
 }
-

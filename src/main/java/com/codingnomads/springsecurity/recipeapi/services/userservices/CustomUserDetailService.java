@@ -1,10 +1,11 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.services.userservices;
-
 
 import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchUserException;
 import com.codingnomads.springsecurity.recipeapi.models.securitymodels.CustomUserDetails;
 import com.codingnomads.springsecurity.recipeapi.models.securitymodels.Role;
 import com.codingnomads.springsecurity.recipeapi.repositories.UserRepo;
+import java.util.Collections;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,8 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collections;
 
 @Component
 public class CustomUserDetailService implements UserDetailsService {
@@ -29,7 +28,7 @@ public class CustomUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         CustomUserDetails optionalUser = userRepo.findByUsername(username);
 
-        if(optionalUser == null) {
+        if (optionalUser == null) {
             throw new UsernameNotFoundException(username + " is not a valid username! Check for typos and try again.");
         }
 
@@ -38,40 +37,40 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Transactional(readOnly = true)
     public CustomUserDetails getByUserId(Long userId) throws NoSuchUserException {
-       CustomUserDetails user = userRepo.getOne(userId);
+        CustomUserDetails user = userRepo.getOne(userId);
 
-       if(null == user) {
-           throw new NoSuchUserException("No user could be found with that ID");
-       }
+        if (null == user) {
+            throw new NoSuchUserException("No user could be found with that ID");
+        }
 
-       return (CustomUserDetails) Hibernate.unproxy(user);
+        return (CustomUserDetails) Hibernate.unproxy(user);
     }
 
     public CustomUserDetails createNewUser(CustomUserDetails userDetails) {
         userDetails.setId(null);
         userDetails.getAuthorities().forEach(a -> a.setId(null));
 
-        //override or set user settings to correct values
+        // override or set user settings to correct values
         userDetails.setAccountNonExpired(true);
         userDetails.setAccountNonLocked(true);
         userDetails.setCredentialsNonExpired(true);
         userDetails.setEnabled(true);
         userDetails.setAuthorities(Collections.singletonList(new Role(Role.Roles.ROLE_USER)));
 
-       checkPassword(userDetails.getPassword());
-       userDetails.setPassword(encoder.encode(userDetails.getPassword()));
+        checkPassword(userDetails.getPassword());
+        userDetails.setPassword(encoder.encode(userDetails.getPassword()));
         try {
-           return userRepo.save(userDetails);
-        }catch (Exception e) {
+            return userRepo.save(userDetails);
+        } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e.getCause());
         }
     }
 
     private void checkPassword(String password) {
-        if(password == null) {
+        if (password == null) {
             throw new IllegalStateException("You must set a password");
         }
-        if(password.length() < 6) {
+        if (password.length() < 6) {
             throw new IllegalStateException("Password is too short. Must be larger than 6 characters");
         }
     }

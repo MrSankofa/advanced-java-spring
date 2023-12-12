@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.wrappingup.multipartdata.models;
 
 import lombok.Builder;
@@ -5,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class FileResponse{
+public class FileResponse {
 
     private String fileName;
     private String fileDownloadUri;

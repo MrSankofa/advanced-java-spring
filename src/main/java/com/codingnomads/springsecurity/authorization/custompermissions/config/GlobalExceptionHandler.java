@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.custompermissions.config;
 
 import org.springframework.security.access.AccessDeniedException;

@@ -1,10 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.extraexample.mappers;
 
+import com.codingnomads.springdata.example.mybatis.extraexample.models.Section;
+import java.util.List;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
-import com.codingnomads.springdata.example.mybatis.extraexample.models.Section;
-
-import java.util.List;
 
 @Mapper
 public interface SectionMapper {
@@ -18,12 +18,11 @@ public interface SectionMapper {
                     property = "chapters",
                     column = "id",
                     javaType = List.class,
-                    many = @Many(
-                            select = "com.codingnomads.springdata.example.mybatis.extraexample.mappers.ChapterMapper.getChaptersBySectionId",
-                            fetchType = FetchType.LAZY
-                    )
-            )
-    )
+                    many =
+                            @Many(
+                                    select =
+                                            "com.codingnomads.springdata.example.mybatis.extraexample.mappers.ChapterMapper.getChaptersBySectionId",
+                                    fetchType = FetchType.LAZY)))
     Section getSectionById(Long sectionId);
 
     @Delete("DELETE FROM mybatis.sections WHERE id = #{id};")

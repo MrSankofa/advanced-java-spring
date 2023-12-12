@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.ioc.examples.dependencylookup;
 
 public interface GreetingRenderer {
@@ -6,5 +7,4 @@ public interface GreetingRenderer {
     void setGreetingProvider(GreetingProvider greetingProvider);
 
     GreetingProvider getGreetingProvider();
-
 }

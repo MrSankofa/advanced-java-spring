@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.mapperslesson;
 
 import lombok.Data;
@@ -13,11 +14,11 @@ public class Song {
 
     private String name;
 
-    //allowed to be null if single
+    // allowed to be null if single
     private String album_name;
 
     private String artist_name;
 
-    //song length in seconds
+    // song length in seconds
     private int song_length;
 }

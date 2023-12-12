@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.ioc.examples.constructorinjection;
 
 import org.springframework.stereotype.Component;
@@ -17,7 +18,6 @@ public class Laptop {
     }
 
     public String printLaptopConfiguration() {
-        return "processor: " + processor.getCore() + " core " + processor.getName() +
-                "\nOS: " + os.getName();
+        return "processor: " + processor.getCore() + " core " + processor.getName() + "\nOS: " + os.getName();
     }
 }

@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.addingauthorization.models;
 
 public enum AuthorityEnum {

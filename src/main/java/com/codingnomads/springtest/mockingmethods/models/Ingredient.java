@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.mockingmethods.models;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Getter
@@ -23,7 +23,4 @@ public class Ingredient {
     private String amount;
 
     private String state;
-
 }
-
-

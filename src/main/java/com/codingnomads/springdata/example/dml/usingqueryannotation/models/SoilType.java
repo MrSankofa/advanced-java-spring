@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.usingqueryannotation.models;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "soil_types")
@@ -26,5 +26,4 @@ public class SoilType {
 
     @Column(nullable = false)
     private boolean dry;
-
 }

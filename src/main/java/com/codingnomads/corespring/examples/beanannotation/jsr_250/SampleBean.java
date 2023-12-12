@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.corespring.examples.beanannotation.jsr_250;
 
 import jakarta.annotation.PostConstruct;
@@ -18,5 +19,4 @@ public class SampleBean {
     public void cleanup() {
         System.out.println("time to @PreDestroy and head home..");
     }
-
 }

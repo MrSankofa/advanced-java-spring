@@ -1,13 +1,13 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.lab.controller;
 
 import com.codingnomads.springtest.lab.entity.Movie;
 import com.codingnomads.springtest.lab.service.MovieService;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/")

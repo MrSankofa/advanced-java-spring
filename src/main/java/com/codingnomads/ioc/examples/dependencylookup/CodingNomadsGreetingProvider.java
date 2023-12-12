@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.ioc.examples.dependencylookup;
 
 public class CodingNomadsGreetingProvider implements GreetingProvider {
@@ -5,5 +6,4 @@ public class CodingNomadsGreetingProvider implements GreetingProvider {
     public String getGreeting() {
         return "Hello CodingNomads!";
     }
-
 }

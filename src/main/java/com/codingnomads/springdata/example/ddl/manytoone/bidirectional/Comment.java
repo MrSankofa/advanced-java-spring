@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.manytoone.bidirectional;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Getter
@@ -20,10 +20,6 @@ public class Comment {
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            optional = false
-    )
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private Post post;
-
 }

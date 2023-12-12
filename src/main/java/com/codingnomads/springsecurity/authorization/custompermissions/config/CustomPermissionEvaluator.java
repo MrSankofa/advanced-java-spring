@@ -1,13 +1,13 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.custompermissions.config;
-
-import org.springframework.security.access.PermissionEvaluator;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.List;
+import org.springframework.security.access.PermissionEvaluator;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Component;
 
 @Component
 public class CustomPermissionEvaluator implements PermissionEvaluator {
@@ -18,15 +18,15 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
         List<GrantedAuthority> grantedAuthorities = (List<GrantedAuthority>) authentication.getAuthorities();
 
         try {
-            //Some reflective work to get the ID in question
+            // Some reflective work to get the ID in question
             Class<?> targetType = targetDomainObject.getClass();
             Method method = targetType.getMethod("getId");
             Long id = (Long) method.invoke(targetDomainObject);
 
-            //compile GrantedAuthorityString
+            // compile GrantedAuthorityString
             String grantedAuthorityString = id + "_" + targetType.getName() + "_" + permission;
 
-            //check if user has matching authority. Return true if so false otherwise
+            // check if user has matching authority. Return true if so false otherwise
             for (GrantedAuthority ga : grantedAuthorities) {
                 if (ga.getAuthority().equalsIgnoreCase(grantedAuthorityString)) {
                     return true;
@@ -41,14 +41,15 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 
     // better suited for @PreAuthorize as we just have the id of and type of target object
     @Override
-    public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType, Object permission) {
+    public boolean hasPermission(
+            Authentication authentication, Serializable targetId, String targetType, Object permission) {
         List<GrantedAuthority> grantedAuthorities = (List<GrantedAuthority>) authentication.getAuthorities();
 
         try {
-            //compile grantedAuthorityString
+            // compile grantedAuthorityString
             String grantedAuthorityString = targetId + "_" + targetType + "_" + permission;
 
-            //check if user has matching authority. Return true if so false otherwise
+            // check if user has matching authority. Return true if so false otherwise
             for (GrantedAuthority ga : grantedAuthorities) {
                 if (ga.getAuthority().equalsIgnoreCase(grantedAuthorityString)) {
                     return true;

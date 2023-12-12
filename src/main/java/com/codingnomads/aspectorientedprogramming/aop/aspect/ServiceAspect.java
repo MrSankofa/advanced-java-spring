@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.aspectorientedprogramming.aop.aspect;
 
 import org.aspectj.lang.JoinPoint;
@@ -13,7 +14,7 @@ public class ServiceAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAspect.class);
 
     @Pointcut(value = "execution(* com.codingnomads.aspectorientedprogramming.aop.service.StudentService.*(..))")
-    private void logAllStudentServiceMethods() { }
+    private void logAllStudentServiceMethods() {}
 
     @Before("logAllStudentServiceMethods()")
     public void logBeforeAdvice(JoinPoint joinPoint) {
@@ -33,7 +34,8 @@ public class ServiceAspect {
 
     @AfterReturning(value = "logAllStudentServiceMethods()", returning = "students")
     public void afterReturningAdvice(JoinPoint jp, Object students) {
-        LOGGER.info("After Returning Advice: " + " Method Name: = " + jp.getSignature().getName());
+        LOGGER.info("After Returning Advice: " + " Method Name: = "
+                + jp.getSignature().getName());
         LOGGER.info("Result: = " + students);
     }
 }

@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.jpa;
 
 import com.codingnomads.springdata.example.jpa.domain.CodeWarrior;
@@ -32,13 +33,9 @@ public class JPADomainDemo implements CommandLineRunner {
         userRepository.deleteAllInBatch();
         userDetailRepository.deleteAllInBatch();
 
-        UserDetail userDetail = UserDetail.builder()
-                .mobile("0123456789")
-                .build();
+        UserDetail userDetail = UserDetail.builder().mobile("0123456789").build();
 
-        User user = User.builder()
-                .name("Java Ninja")
-                .build();
+        User user = User.builder().name("Java Ninja").build();
 
         // Set child reference(userDetail) in parent entity(user)
 
@@ -54,17 +51,15 @@ public class JPADomainDemo implements CommandLineRunner {
 
         userRepository.findAll().forEach(u -> System.out.println(u.getName()));
 
-
         /*Bidirectional One To Many */
 
-        CodeWarrior codeWarrior = CodeWarrior.builder()
-                .name("Java Ninja")
-                .build();
+        CodeWarrior codeWarrior = CodeWarrior.builder().name("Java Ninja").build();
         codeWarrior.addWeapon(Weapon.builder().name("JDK").build());
         codeWarrior.addWeapon(Weapon.builder().name("Spring").build());
 
         codeWarriorRepository.save(codeWarrior);
-        codeWarriorRepository.findAll().forEach(cw -> codeWarrior.getWeapons()
-                .forEach(item -> System.out.println(item.getName())));
+        codeWarriorRepository
+                .findAll()
+                .forEach(cw -> codeWarrior.getWeapons().forEach(item -> System.out.println(item.getName())));
     }
 }

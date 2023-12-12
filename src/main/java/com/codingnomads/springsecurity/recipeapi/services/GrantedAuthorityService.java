@@ -1,9 +1,9 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.services;
 
 import com.codingnomads.springsecurity.recipeapi.models.securitymodels.Role;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
+import org.springframework.stereotype.Service;
 
 @Service
 public class GrantedAuthorityService {

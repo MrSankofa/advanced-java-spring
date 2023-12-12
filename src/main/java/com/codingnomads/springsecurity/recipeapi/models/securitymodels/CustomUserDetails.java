@@ -1,18 +1,18 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.models.securitymodels;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
-import org.springframework.security.core.userdetails.UserDetails;
 import com.codingnomads.springsecurity.recipeapi.models.UserMeta;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Getter
 @Setter
-//@Builder
+// @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomUserDetails implements UserDetails {
@@ -48,10 +48,7 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(
-            name = "userId",
-            nullable = false
-    )
+    @JoinColumn(name = "userId", nullable = false)
     private Collection<Role> authorities = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.PERSIST, optional = false)

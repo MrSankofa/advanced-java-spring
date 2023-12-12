@@ -1,16 +1,21 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.corespring.examples.springbeanlifecycle;
 
+import java.util.Arrays;
 import org.springframework.beans.factory.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-
 @Component
-public class SpringBean implements BeanNameAware, BeanClassLoaderAware, BeanFactoryAware,
-        ApplicationContextAware, InitializingBean, DisposableBean {
+public class SpringBean
+        implements BeanNameAware,
+                BeanClassLoaderAware,
+                BeanFactoryAware,
+                ApplicationContextAware,
+                InitializingBean,
+                DisposableBean {
 
     @Override
     public void setBeanName(@NonNull String name) {
@@ -29,14 +34,15 @@ public class SpringBean implements BeanNameAware, BeanClassLoaderAware, BeanFact
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
-        System.out.println("Bean definition count: ".concat(String.valueOf(applicationContext.getBeanDefinitionCount())));
+        System.out.println(
+                "Bean definition count: ".concat(String.valueOf(applicationContext.getBeanDefinitionCount())));
         Arrays.stream(applicationContext.getBeanDefinitionNames()).forEach(System.out::println);
     }
 
     @Override
     public void afterPropertiesSet() {
-        System.out.println("afterPropertiesSet() method call post bean construct, " +
-                "after setting all bean properties.");
+        System.out.println(
+                "afterPropertiesSet() method call post bean construct, " + "after setting all bean properties.");
     }
 
     @Override

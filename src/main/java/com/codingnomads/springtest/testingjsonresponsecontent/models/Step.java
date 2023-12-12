@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springtest.testingjsonresponsecontent.models;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Getter
@@ -21,5 +21,4 @@ public class Step {
 
     @Column(nullable = false)
     private String description;
-
 }

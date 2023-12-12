@@ -1,7 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.gettingdatafromclient.requestbody.controllers;
 
 import com.codingnomads.springweb.gettingdatafromclient.requestbody.models.Task;
 import com.codingnomads.springweb.gettingdatafromclient.requestbody.repositories.TaskRepository;
+import java.net.URI;
+import java.net.URISyntaxException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,9 +13,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.net.URI;
-import java.net.URISyntaxException;
 
 @RestController
 public class TaskController {
@@ -26,9 +26,10 @@ public class TaskController {
             task.setCreatedAt(null);
             return ResponseEntity.badRequest().body(task);
         }
-        final Task savedTask = taskRepository
-                .save(Task.builder()
-                        .completed(task.getCompleted()).name(task.getName()).build());
+        final Task savedTask = taskRepository.save(Task.builder()
+                .completed(task.getCompleted())
+                .name(task.getName())
+                .build());
 
         return ResponseEntity.created(new URI("/api/tasks/" + savedTask.getId()))
                 .body(savedTask);

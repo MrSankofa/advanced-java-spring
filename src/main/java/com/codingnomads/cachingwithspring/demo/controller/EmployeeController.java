@@ -1,12 +1,12 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.cachingwithspring.demo.controller;
 
 import com.codingnomads.cachingwithspring.demo.model.Employee;
 import com.codingnomads.cachingwithspring.demo.service.EmployeeService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -31,8 +31,8 @@ public class EmployeeController {
     }
 
     @PutMapping("employees/{employeeId}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "employeeId") Integer employeeId,
-                                   @RequestBody Employee employeeDetails) {
+    public ResponseEntity<Employee> updateEmployee(
+            @PathVariable(value = "employeeId") Integer employeeId, @RequestBody Employee employeeDetails) {
         Employee employee = employeeService.getEmployee(employeeId);
         employee.setName(employeeDetails.getName());
         return ResponseEntity.ok(employeeService.saveEmployee(employee));

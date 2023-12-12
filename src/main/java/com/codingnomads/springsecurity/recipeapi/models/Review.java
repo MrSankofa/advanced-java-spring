@@ -1,11 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.models;
 
 import com.codingnomads.springsecurity.recipeapi.models.securitymodels.CustomUserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-
 import jakarta.persistence.*;
-
+import lombok.*;
 
 @Entity
 @Data
@@ -24,23 +23,18 @@ public class Review {
     @JsonIgnore
     private CustomUserDetails user;
 
-
     @Column(nullable = false)
     private int rating;
 
     private String description;
 
     @ManyToOne
-    @JoinColumn(
-            name = "recipeId",
-            nullable = false,
-            foreignKey = @ForeignKey
-    )
+    @JoinColumn(name = "recipeId", nullable = false, foreignKey = @ForeignKey)
     @JsonIgnore
     private Recipe recipe;
 
     public void setRating(int rating) {
-        if(rating <= 0 || rating > 10) {
+        if (rating <= 0 || rating > 10) {
             throw new IllegalStateException("Rating must be between 0 and 10");
         }
         this.rating = rating;

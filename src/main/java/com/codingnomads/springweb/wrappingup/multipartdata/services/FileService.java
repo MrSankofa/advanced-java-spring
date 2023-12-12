@@ -1,15 +1,15 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.wrappingup.multipartdata.services;
 
+import com.codingnomads.springweb.wrappingup.multipartdata.models.DatabaseFile;
+import com.codingnomads.springweb.wrappingup.multipartdata.models.FileResponse;
+import com.codingnomads.springweb.wrappingup.multipartdata.repositories.DatabaseFileRepository;
+import java.io.IOException;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import com.codingnomads.springweb.wrappingup.multipartdata.models.DatabaseFile;
-import com.codingnomads.springweb.wrappingup.multipartdata.models.FileResponse;
-import com.codingnomads.springweb.wrappingup.multipartdata.repositories.DatabaseFileRepository;
-
-import java.io.IOException;
-import java.util.Objects;
 
 @Service
 public class FileService {

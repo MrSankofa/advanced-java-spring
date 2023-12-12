@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springmvc.thymeleaf;
 
 import org.springframework.context.annotation.Bean;

@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.ioc.examples.setterinjection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ public class Laptop {
     }
 
     public String printLaptopConfiguration() {
-        return "processor: " + processor.getCore() + " core " + processor.getName() +
-                "\nOS: " + os.getName();
+        return "processor: " + processor.getCore() + " core " + processor.getName() + "\nOS: " + os.getName();
     }
 }

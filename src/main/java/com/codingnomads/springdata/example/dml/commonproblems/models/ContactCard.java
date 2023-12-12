@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.dml.commonproblems.models;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "contact_cards")
@@ -27,5 +27,4 @@ public class ContactCard {
 
     @OneToOne(mappedBy = "contactCard")
     private User user;
-
 }

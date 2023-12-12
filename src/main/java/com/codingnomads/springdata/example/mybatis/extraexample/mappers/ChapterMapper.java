@@ -1,11 +1,11 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.extraexample.mappers;
 
 import com.codingnomads.springdata.example.mybatis.extraexample.models.Chapter;
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.mapping.FetchType;
-
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 
 @Mapper
 public interface ChapterMapper {
@@ -19,12 +19,11 @@ public interface ChapterMapper {
                     column = "id",
                     property = "lessons",
                     javaType = List.class,
-                    many = @Many(
-                            select = "com.codingnomads.springdata.example.mybatis.extraexample.mappers.LessonMapper.getLessonByChapterId",
-                            fetchType = FetchType.LAZY
-                    )
-            )
-    )
+                    many =
+                            @Many(
+                                    select =
+                                            "com.codingnomads.springdata.example.mybatis.extraexample.mappers.LessonMapper.getLessonByChapterId",
+                                    fetchType = FetchType.LAZY)))
     Chapter getByChapterId(Long id);
 
     @Select("SELECT id, name FROM mybatis.chapters WHERE section_id = #{param1};")
@@ -33,12 +32,11 @@ public interface ChapterMapper {
                     column = "id",
                     property = "lessons",
                     javaType = List.class,
-                    many = @Many(
-                            select = "com.codingnomads.springdata.example.mybatis.extraexample.mappers.LessonMapper.getLessonByChapterId",
-                            fetchType = FetchType.LAZY
-                    )
-            )
-    )
+                    many =
+                            @Many(
+                                    select =
+                                            "com.codingnomads.springdata.example.mybatis.extraexample.mappers.LessonMapper.getLessonByChapterId",
+                                    fetchType = FetchType.LAZY)))
     LinkedList<Chapter> getChaptersBySectionId(Long sectionId);
 
     @Delete("DELETE FROM mybatis.chapters WHERE id = #{param1};")

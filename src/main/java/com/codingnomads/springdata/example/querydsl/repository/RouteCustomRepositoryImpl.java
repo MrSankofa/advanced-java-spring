@@ -1,14 +1,14 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.querydsl.repository;
 
+import com.codingnomads.springdata.example.querydsl.models.QRoute;
+import com.codingnomads.springdata.example.querydsl.models.Route;
+import com.codingnomads.springdata.example.querydsl.models.SearchQuery;
 import com.querydsl.core.BooleanBuilder;
+import java.util.List;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
-import com.codingnomads.springdata.example.querydsl.models.SearchQuery;
-import com.codingnomads.springdata.example.querydsl.models.Route;
-import com.codingnomads.springdata.example.querydsl.models.QRoute;
-
-import java.util.List;
 
 @Repository
 public class RouteCustomRepositoryImpl extends QuerydslRepositorySupport implements RouteCustomRepository {

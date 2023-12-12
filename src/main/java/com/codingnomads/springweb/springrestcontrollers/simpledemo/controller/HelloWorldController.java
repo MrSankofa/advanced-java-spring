@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.springrestcontrollers.simpledemo.controller;
 
 import org.springframework.http.MediaType;
@@ -17,7 +18,3 @@ public class HelloWorldController {
         return "Hello " + name + "!";
     }
 }
-
-
-
-

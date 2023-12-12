@@ -1,8 +1,8 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.ddl.onetoone.unidirectional;
 
-import lombok.*;
-
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "cars")
@@ -20,5 +20,4 @@ public class Car {
 
     @Column(name = "horsepower")
     private String horsepower;
-
 }

@@ -1,7 +1,13 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.gettingdatafromclient.handlingmultipartdata.controllers;
 
+import com.codingnomads.springweb.gettingdatafromclient.handlingmultipartdata.models.DatabaseFile;
 import com.codingnomads.springweb.gettingdatafromclient.handlingmultipartdata.models.FileResponse;
 import com.codingnomads.springweb.gettingdatafromclient.handlingmultipartdata.repositories.DatabaseFileRepository;
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
+import java.util.Objects;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -12,12 +18,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import com.codingnomads.springweb.gettingdatafromclient.handlingmultipartdata.models.DatabaseFile;
-
-import java.io.IOException;
-import java.nio.file.NoSuchFileException;
-import java.util.Objects;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/images")
@@ -26,15 +26,15 @@ public class HandleMultipartDataController {
     @Autowired
     DatabaseFileRepository fileRepository;
 
-    //@PostMapping("/uploadSingleFile")
+    // @PostMapping("/uploadSingleFile")
     @PostMapping()
     public ResponseEntity<?> uploadFile(@RequestBody MultipartFile file) {
 
         String fileName;
         // get the original file name
         if (file == null) {
-            return ResponseEntity.badRequest().body(
-                    new IllegalStateException("Sorry did not receive a file, please try again!"));
+            return ResponseEntity.badRequest()
+                    .body(new IllegalStateException("Sorry did not receive a file, please try again!"));
         } else {
             fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         }
@@ -66,12 +66,12 @@ public class HandleMultipartDataController {
 
         } catch (IOException ex) {
             // wraps exception with custom message in a ResponseEntity to be returned to the user.
-            return ResponseEntity.badRequest().body(
-                    new IllegalStateException("Sorry could not store file " + fileName + "Try again!", ex));
+            return ResponseEntity.badRequest()
+                    .body(new IllegalStateException("Sorry could not store file " + fileName + "Try again!", ex));
         }
     }
 
-    //@GetMapping("/download/{id}")
+    // @GetMapping("/download/{id}")
     @GetMapping("/{id}")
     public ResponseEntity<?> downloadFileById(@PathVariable(name = "id") Long fileId) {
 
@@ -86,16 +86,17 @@ public class HandleMultipartDataController {
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(databaseFile.getFileType()))
                 // display the file inline
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
+                //.header(HttpHeaders.CONTENT_DISPOSITION, "inline")
                 // download file, without setting file name
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
+                //.header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
                 // download file, and specify file name
-                .header(HttpHeaders.CONTENT_DISPOSITION,
+                .header(
+                        HttpHeaders.CONTENT_DISPOSITION,
                         String.format("attachment; filename=\"%s\"", databaseFile.getFileName()))
                 .body(new ByteArrayResource(databaseFile.getData()));
     }
 
-    //@PutMapping("/uploadSingleFile/{id}")
+    // @PutMapping("/uploadSingleFile/{id}")
     @PutMapping("/{id}")
     public ResponseEntity<?> updateFileById(@PathVariable(name = "id") Long fileId, @RequestBody MultipartFile file) {
 
@@ -103,11 +104,10 @@ public class HandleMultipartDataController {
 
         if (optional.isEmpty()) {
             return ResponseEntity.badRequest()
-                    .body(new NoSuchFileException("The ID you passed in was not valid. " +
-                            "Where you trying to upload a new file?"));
+                    .body(new NoSuchFileException(
+                            "The ID you passed in was not valid. " + "Where you trying to upload a new file?"));
         } else if (file == null) {
-            return ResponseEntity.badRequest()
-                    .body(new NoSuchFileException("No file was received, please try again."));
+            return ResponseEntity.badRequest().body(new NoSuchFileException("No file was received, please try again."));
         }
 
         DatabaseFile databaseFile = optional.get();
@@ -117,8 +117,8 @@ public class HandleMultipartDataController {
             databaseFile.setFileType(file.getContentType());
         } catch (IOException ex) {
             return ResponseEntity.badRequest()
-                    .body(new IllegalStateException("Sorry could not update file "
-                            + file.getOriginalFilename() + "Try again!", ex));
+                    .body(new IllegalStateException(
+                            "Sorry could not update file " + file.getOriginalFilename() + "Try again!", ex));
         }
 
         final DatabaseFile savedFile = fileRepository.save(databaseFile);
@@ -136,18 +136,17 @@ public class HandleMultipartDataController {
                 .build());
     }
 
-    //@DeleteMapping("/deleteFile/{id}")
+    // @DeleteMapping("/deleteFile/{id}")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteFileById(@PathVariable("id") Long fileId) {
         final Optional<DatabaseFile> optional = fileRepository.findById(fileId);
 
         if (optional.isEmpty()) {
-            return ResponseEntity.badRequest()
-                    .body(new NoSuchFileException("The ID passed in was not valid."));
+            return ResponseEntity.badRequest().body(new NoSuchFileException("The ID passed in was not valid."));
         }
 
         fileRepository.deleteById(fileId);
-        return ResponseEntity.ok("File with ID " + fileId + " and name " + optional.get().getFileName() + " was deleted");
+        return ResponseEntity.ok(
+                "File with ID " + fileId + " and name " + optional.get().getFileName() + " was deleted");
     }
 }
-

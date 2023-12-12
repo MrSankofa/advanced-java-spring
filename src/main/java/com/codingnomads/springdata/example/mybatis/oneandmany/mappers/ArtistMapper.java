@@ -1,10 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.oneandmany.mappers;
 
+import com.codingnomads.springdata.example.mybatis.oneandmany.models.Artist;
+import java.util.ArrayList;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
-import com.codingnomads.springdata.example.mybatis.oneandmany.models.Artist;
-
-import java.util.ArrayList;
 
 @Mapper
 public interface ArtistMapper {
@@ -15,16 +15,16 @@ public interface ArtistMapper {
 
     @Select("SELECT * FROM mybatis.artists WHERE id = #{param1};")
     @Results({
-            @Result(property = "id", column = "id"),
-            @Result(
-                    property = "songs",
-                    column = "id",
-                    javaType = ArrayList.class,
-                    many = @Many(
-                            select = "com.codingnomads.springdata.example.mybatis.oneandmany.mappers.SongMapper.getSongsByArtistId",
-                            fetchType = FetchType.LAZY
-                    )
-            )
+        @Result(property = "id", column = "id"),
+        @Result(
+                property = "songs",
+                column = "id",
+                javaType = ArrayList.class,
+                many =
+                        @Many(
+                                select =
+                                        "com.codingnomads.springdata.example.mybatis.oneandmany.mappers.SongMapper.getSongsByArtistId",
+                                fetchType = FetchType.LAZY))
     })
     Artist getArtistByIdWithSongs(Long id);
 

@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.resultsandresult;
 
 import lombok.Data;
@@ -15,7 +16,7 @@ public class Song {
 
     private String artistName;
 
-    //song length in seconds
+    // song length in seconds
     private int songLength;
 
     public Song(String name, String albumName, String artistName, int songLength) {

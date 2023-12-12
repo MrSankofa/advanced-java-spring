@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.resultsandresult;
 
 import org.springframework.boot.CommandLineRunner;
@@ -15,7 +16,7 @@ public class ResultsDemoApplication {
     @Bean
     public CommandLineRunner loadInitialData(SongMapper songMapper) {
         return (args) -> {
-            //notice the setter names have changed to match Java naming conventions
+            // notice the setter names have changed to match Java naming conventions
             Song song1 = new Song();
             song1.setName("Minnesota, WI");
             song1.setAlbumName("Bon Iver");

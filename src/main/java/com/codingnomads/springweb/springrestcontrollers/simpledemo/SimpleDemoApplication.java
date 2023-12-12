@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.springrestcontrollers.simpledemo;
 
 import org.springframework.boot.SpringApplication;

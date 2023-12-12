@@ -1,3 +1,4 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.resttemplate.GET.getForObject;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;

@@ -1,18 +1,18 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springweb.springrestcontrollers.shortcutannotations.controller;
 
+import com.codingnomads.springweb.springrestcontrollers.shortcutannotations.model.Task;
 import com.codingnomads.springweb.springrestcontrollers.shortcutannotations.repostiory.TaskRepository;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import com.codingnomads.springweb.springrestcontrollers.shortcutannotations.model.Task;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tasks")

@@ -1,10 +1,10 @@
+/* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.extraexample.mappers;
 
 import com.codingnomads.springdata.example.mybatis.extraexample.models.Lesson;
-import org.apache.ibatis.annotations.*;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface LessonMapper {
@@ -16,16 +16,17 @@ public interface LessonMapper {
     void addImageToLesson(Long lessonId, String imageName);
 
     @Select("SELECT id, name, text FROM mybatis.lessons WHERE id = #{param1};")
-    @Results(id = "lessonResultMap",
-                value = @Result(
-                    column = "id",
-                    javaType = List.class,
-                    property = "imageArrayList",
-                    many = @Many(
-                            select = "com.codingnomads.springdata.example.mybatis.extraexample.mappers.ImageMapper.getImagesByLessonId"
-                    )
-            )
-    )
+    @Results(
+            id = "lessonResultMap",
+            value =
+                    @Result(
+                            column = "id",
+                            javaType = List.class,
+                            property = "imageArrayList",
+                            many =
+                                    @Many(
+                                            select =
+                                                    "com.codingnomads.springdata.example.mybatis.extraexample.mappers.ImageMapper.getImagesByLessonId")))
     Lesson getLessonById(Long lessonId);
 
     @Select("SELECT id, name, text FROM mybatis.lessons WHERE chapter_id = #{param1};")
@@ -41,5 +42,4 @@ public interface LessonMapper {
 
     @Delete("DELETE FROM mybatis.lessons WHERE id = #{param1};")
     void deleteLessonById(Long id);
-
 }
