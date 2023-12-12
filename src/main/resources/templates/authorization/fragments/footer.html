@@ -1,23 +1,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 </head>
 <th:block th:fragment="footer">
     <footer>
         <div class="container">
-
             <p>
-                &copy; https://platform.codingnomads.co
+                &copy; https://com.codingnomads.spring
                 <span sec:authorize="isAuthenticated()">
-                Logged in user: <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
-                <a th:if="${#httpServletRequest.remoteUser !=null}" th:href="@{/logout}">Sign Out</a>
+                Logged in user: <b>[[${#authentication.name}]]</b>
+                <a th:href="@{/logout}">Sign Out</a>
                 </span>
+            </p>
         </div>
     </footer>
 
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.6.4/jquery.min.js/}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
 
 </th:block>
 </body>

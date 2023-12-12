@@ -5,12 +5,12 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="beatlesRecord" class="platform.codingnomads.co.corespring.lab.complete.Record">
+    <bean id="beatlesRecord" class="com.codingnomads.corespring.lab.complete.Record">
         <property name="artist" value="The Beatles"/>
         <property name="album" value="Abbey Road"/>
     </bean>
 
-    <bean id="bowieRecord" class="platform.codingnomads.co.corespring.lab.complete.Record">
+    <bean id="bowieRecord" class="com.codingnomads.corespring.lab.complete.Record">
         <property name="artist" value="David Bowie"/>
         <property name="album" value="Hunky Dorey"/>
     </bean>
