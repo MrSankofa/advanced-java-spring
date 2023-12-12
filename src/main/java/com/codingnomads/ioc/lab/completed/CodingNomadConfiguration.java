@@ -11,22 +11,22 @@ public class CodingNomadConfiguration {
 
     @Bean
     public Framework framework() {
-        return Framework.builder().name("Spring Boot").version("2.5").build();
+        return Framework.builder().name("Spring Boot").version("3.2").build();
     }
 
     @Bean
     public IDE ide() {
-        return IDE.builder().name("IntelliJ IDEA").version("2021.1").build();
+        return IDE.builder().name("IntelliJ IDEA").version("2023.5").build();
     }
 
     @Bean
     public JDK jdk() {
-        return JDK.builder().name("OpenJDK").version("11").build();
+        return JDK.builder().name("OpenJDK").version("17").build();
     }
 
     @Bean
     public OperatingSystem operatingSystem() {
-        return OperatingSystem.builder().name("macOS").version("11.4").build();
+        return OperatingSystem.builder().name("macOS").version("13.6").build();
     }
 
     @Bean
