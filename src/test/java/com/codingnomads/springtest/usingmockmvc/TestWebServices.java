@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest(classes = MockMvcMain.class)
 // indicate that Spring should autoconfigure the MockMvc object
 @AutoConfigureMockMvc
-public class TestingWebServices {
+public class TestWebServices {
 
     @Autowired
     MockMvc mockMvc;

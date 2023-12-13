@@ -3,12 +3,12 @@ package com.codingnomads.springtest.understandingandusingprofiles;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
+@Component
 @Profile("test")
-public class TestMain implements CommandLineRunner {
+public class TestDataLoader implements CommandLineRunner {
 
     @Autowired
     CoffeePreferenceRepo repo;
