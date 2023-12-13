@@ -9,12 +9,12 @@ import com.codingnomads.springtest.mockingmethods.repositories.RecipeRepo;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
+@Component
 @Profile("test")
-public class RecipeMainTest implements CommandLineRunner {
+public class RecipeDataLoader implements CommandLineRunner {
 
     @Autowired
     RecipeRepo recipeRepo;
