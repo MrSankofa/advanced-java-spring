@@ -85,8 +85,7 @@ public class RecipeControllerEndpointTest {
     public void testGetAllRecipesSuccessBehavior() throws Exception {
 
         // set up get request for all recipe endpoint
-        this.mockMvc
-                .perform(get("/recipes"))
+        mockMvc.perform(get("/recipes"))
                 .andDo(print())
                 // expect status is 200 OK
                 .andExpect(status().isOk())
@@ -134,8 +133,7 @@ public class RecipeControllerEndpointTest {
                 .reviews(Set.of(review))
                 .build();
 
-        MockHttpServletResponse response = this.mockMvc
-                .perform(post("/recipes")
+        MockHttpServletResponse response = mockMvc.perform(post("/recipes")
                         // set request Content-Type header
                         .contentType("application/json")
                         // set HTTP body equal to JSON based on recipe object
@@ -175,8 +173,7 @@ public class RecipeControllerEndpointTest {
         Recipe recipe = new Recipe();
 
         // force failure with empty User object
-        this.mockMvc
-                .perform(post("/recipes")
+        mockMvc.perform(post("/recipes")
                         // set body equal to empty recipe object
                         .content(TestUtil.convertObjectToJsonBytes(recipe))
                         // set Content-Type header
@@ -230,8 +227,7 @@ public class RecipeControllerEndpointTest {
     @Order(7)
     public void testGetRecipeByNameFailureBehavior() throws Exception {
 
-        byte[] contentAsByteArray = this.mockMvc
-                .perform(get("/recipes/search/should not exist"))
+        byte[] contentAsByteArray = mockMvc.perform(get("/recipes/search/should not exist"))
                 // expect 404 NOT FOUND
                 .andExpect(status().isNotFound())
                 // expect only a String in the body
@@ -251,8 +247,7 @@ public class RecipeControllerEndpointTest {
     @Test
     @Order(8)
     public void testUpdateRecipeSuccessBehavior() throws Exception {
-        MockHttpServletResponse response = this.mockMvc
-                .perform(get("/recipes/2"))
+        MockHttpServletResponse response = mockMvc.perform(get("/recipes/2"))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse();
@@ -334,8 +329,7 @@ public class RecipeControllerEndpointTest {
     @Order(10)
     public void testDeleteRecipeByIdFailureBehavior() throws Exception {
         // force error with invalid ID
-        this.mockMvc
-                .perform(delete("/recipes/-1"))
+        mockMvc.perform(delete("/recipes/-1"))
                 // expect 400 BAD REQUEST
                 .andExpect(status().isBadRequest())
                 // expect plain text aka a String
@@ -351,8 +345,7 @@ public class RecipeControllerEndpointTest {
         // delete all entries to force error
         recipeRepo.deleteAll();
         // perform GET all recipes
-        this.mockMvc
-                .perform(get("/recipes"))
+        mockMvc.perform(get("/recipes"))
                 .andDo(print())
                 // expect 404 NOT FOUND
                 .andExpect(status().isNotFound())

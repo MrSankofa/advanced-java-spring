@@ -213,8 +213,7 @@ public class RecipeControllerEndpointTest {
     public void testGetRecipesByNameSuccessBehavior() throws Exception {
 
         // set up get request to search for recipes with names including the word recipe
-        MvcResult mvcResult = this.mockMvc
-                .perform(get("/recipes/search/recipe"))
+        MvcResult mvcResult = mockMvc.perform(get("/recipes/search/recipe"))
                 // expect 200 OK
                 .andExpect(status().isOk())
                 // expect JSON in return
@@ -240,8 +239,7 @@ public class RecipeControllerEndpointTest {
         }
 
         // set up get request to search for recipes with names containing potato
-        byte[] jsonBytes = this.mockMvc
-                .perform(get("/recipes/search/potato"))
+        byte[] jsonBytes = mockMvc.perform(get("/recipes/search/potato"))
                 // expect 200 OK
                 .andExpect(status().isOk())
                 // expect json
@@ -268,8 +266,7 @@ public class RecipeControllerEndpointTest {
     @Order(7)
     public void testGetRecipeByNameFailureBehavior() throws Exception {
 
-        byte[] contentAsByteArray = this.mockMvc
-                .perform(get("/recipes/search/should not exist"))
+        byte[] contentAsByteArray = mockMvc.perform(get("/recipes/search/should not exist"))
                 // expect 404 NOT FOUND
                 .andExpect(status().isNotFound())
                 // expect only a String in the body
@@ -289,8 +286,7 @@ public class RecipeControllerEndpointTest {
     @Test
     @Order(8)
     public void testUpdateRecipeSuccessBehavior() throws Exception {
-        MockHttpServletResponse response = this.mockMvc
-                .perform(get("/recipes/2"))
+        MockHttpServletResponse response = mockMvc.perform(get("/recipes/2"))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse();
@@ -322,8 +318,7 @@ public class RecipeControllerEndpointTest {
         recipeToUpdate.setMinutesToMake(1);
         recipeToUpdate.setDifficultyRating(1);
 
-        byte[] updateResponseByteArr = this.mockMvc
-                .perform(patch("/recipes")
+        byte[] updateResponseByteArr = mockMvc.perform(patch("/recipes")
                         .content(TestUtil.convertObjectToJsonBytes(recipeToUpdate))
                         .contentType("application/json"))
                 .andExpect(status().isOk())
@@ -345,8 +340,7 @@ public class RecipeControllerEndpointTest {
     public void testDeleteRecipeByIdSuccessBehavior() throws Exception {
         final long recipeId = 3;
         // get the recipe with ID 3 for future error message confirmation
-        byte[] responseByteArr = this.mockMvc
-                .perform(get("/recipes/" + recipeId))
+        byte[] responseByteArr = mockMvc.perform(get("/recipes/" + recipeId))
                 .andExpect(status().isOk())
                 // confirm correct recipe was returned
                 .andExpect(jsonPath("id").value(recipeId))
@@ -357,8 +351,7 @@ public class RecipeControllerEndpointTest {
         Recipe recipe3 = TestUtil.convertJsonBytesToObject(responseByteArr, Recipe.class);
 
         // set up delete request
-        byte[] deleteResponseByteArr = this.mockMvc
-                .perform(delete("/recipes/" + recipeId))
+        byte[] deleteResponseByteArr = mockMvc.perform(delete("/recipes/" + recipeId))
                 // confirm 200 OK was returned
                 .andExpect(status().isOk())
                 // confirm a String was returned
