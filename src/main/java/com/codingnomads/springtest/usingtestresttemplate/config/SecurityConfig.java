@@ -1,5 +1,5 @@
 /* CodingNomads (C)2023 */
-package com.codingnomads.springweb.gettingdatafromclient.handlingmultipartdata;
+package com.codingnomads.springtest.usingtestresttemplate.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
