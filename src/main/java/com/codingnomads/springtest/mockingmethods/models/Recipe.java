@@ -31,6 +31,8 @@ public class Recipe {
     @Column(nullable = false)
     private Integer difficultyRating;
 
+    private String username;
+
     @Builder.Default
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "recipeId", nullable = false, foreignKey = @ForeignKey)

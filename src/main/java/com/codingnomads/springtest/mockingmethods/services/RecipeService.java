@@ -5,7 +5,7 @@ import com.codingnomads.springtest.mockingmethods.exceptions.NoSuchRecipeExcepti
 import com.codingnomads.springtest.mockingmethods.models.Recipe;
 import com.codingnomads.springtest.mockingmethods.repositories.RecipeRepo;
 import jakarta.transaction.Transactional;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +36,8 @@ public class RecipeService {
         return recipe;
     }
 
-    public ArrayList<Recipe> getRecipesByName(String name) throws NoSuchRecipeException {
-        ArrayList<Recipe> matchingRecipes = recipeRepo.findByNameContaining(name);
+    public List<Recipe> getRecipesByName(String name) throws NoSuchRecipeException {
+        List<Recipe> matchingRecipes = recipeRepo.findByNameContaining(name);
 
         if (matchingRecipes.isEmpty()) {
             throw new NoSuchRecipeException("No recipes could be found with that name");
@@ -50,8 +50,8 @@ public class RecipeService {
         return matchingRecipes;
     }
 
-    public ArrayList<Recipe> getAllRecipes() throws NoSuchRecipeException {
-        ArrayList<Recipe> recipes = new ArrayList<>(recipeRepo.findAll());
+    public List<Recipe> getAllRecipes() throws NoSuchRecipeException {
+        List<Recipe> recipes = recipeRepo.findAll();
 
         if (recipes.isEmpty()) {
             throw new NoSuchRecipeException("There are no recipes yet :( feel free to add one though");

@@ -6,7 +6,7 @@ import com.codingnomads.springtest.testingjsonresponsecontent.exceptions.NoSuchR
 import com.codingnomads.springtest.testingjsonresponsecontent.models.Recipe;
 import com.codingnomads.springtest.testingjsonresponsecontent.models.Review;
 import com.codingnomads.springtest.testingjsonresponsecontent.repositories.ReviewRepo;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,10 +30,10 @@ public class ReviewService {
         return review.get();
     }
 
-    public ArrayList<Review> getReviewByRecipeId(Long recipeId) throws NoSuchRecipeException, NoSuchReviewException {
+    public List<Review> getReviewByRecipeId(Long recipeId) throws NoSuchRecipeException, NoSuchReviewException {
         Recipe recipe = recipeService.getRecipeById(recipeId);
 
-        ArrayList<Review> reviews = new ArrayList<>(recipe.getReviews());
+        List<Review> reviews = recipe.getReviews().stream().toList();
 
         if (reviews.isEmpty()) {
             throw new NoSuchReviewException("There are no reviews for this recipe");
@@ -42,8 +42,8 @@ public class ReviewService {
         return reviews;
     }
 
-    public ArrayList<Review> getReviewByUsername(String username) throws NoSuchReviewException {
-        ArrayList<Review> reviews = reviewRepo.findByUsername(username);
+    public List<Review> getReviewByUsername(String username) throws NoSuchReviewException {
+        List<Review> reviews = reviewRepo.findByUsername(username);
 
         if (reviews.isEmpty()) {
             throw new NoSuchReviewException("No reviews could be found for username " + username);
