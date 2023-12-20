@@ -15,6 +15,7 @@ import com.codingnomads.springtest.mockingmethods.models.Review;
 import com.codingnomads.springtest.mockingmethods.models.Step;
 import com.codingnomads.springtest.mockingmethods.repositories.RecipeRepo;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -166,21 +167,21 @@ public class RecipeControllerEndpointTest {
         assertThat(returnedRecipe.getName()).isEqualTo("caramel in a pan");
 
         // confirm ingredient data
-        ArrayList<Ingredient> ingredientArrayList = new ArrayList<>(returnedRecipe.getIngredients());
-        assertThat(ingredientArrayList).hasSize(1);
-        assertThat(ingredientArrayList.get(0).getName()).isEqualTo("brown sugar");
-        assertThat(ingredientArrayList.get(0).getAmount()).isEqualTo("1 cup");
+        List<Ingredient> ingredientList = new ArrayList<>(returnedRecipe.getIngredients());
+        assertThat(ingredientList).hasSize(1);
+        assertThat(ingredientList.get(0).getName()).isEqualTo("brown sugar");
+        assertThat(ingredientList.get(0).getAmount()).isEqualTo("1 cup");
 
         // confirm step data
-        ArrayList<Step> stepArrayList = new ArrayList<>(returnedRecipe.getSteps());
-        assertThat(stepArrayList).hasSize(2);
-        assertThat(stepArrayList.get(0)).isNotNull();
-        assertThat(stepArrayList.get(1)).isNotNull();
+        List<Step> stepList = new ArrayList<>(returnedRecipe.getSteps());
+        assertThat(stepList).hasSize(2);
+        assertThat(stepList.get(0)).isNotNull();
+        assertThat(stepList.get(1)).isNotNull();
 
         // confirm review data
-        ArrayList<Review> reviewArrayList = new ArrayList<>(returnedRecipe.getReviews());
-        assertThat(reviewArrayList).hasSize(1);
-        assertThat(reviewArrayList.get(0).getUsername()).isEqualTo("idk");
+        List<Review> reviewList = new ArrayList<>(returnedRecipe.getReviews());
+        assertThat(reviewList).hasSize(1);
+        assertThat(reviewList.get(0).getUsername()).isEqualTo("idk");
     }
 
     @Test

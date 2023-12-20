@@ -18,8 +18,7 @@ import com.codingnomads.springtest.mockingmethods.models.Step;
 import com.codingnomads.springtest.mockingmethods.security.SecurityConfig;
 import com.codingnomads.springtest.mockingmethods.services.RecipeService;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +87,7 @@ public class RecipeControllerUnitTest {
     @Test
     public void testGetRecipeByNameSuccessBehavior() throws Exception {
         when(recipeService.getRecipesByName(anyString()))
-                .thenReturn(new ArrayList<>(Arrays.asList(
+                .thenReturn(List.of(
                         Recipe.builder()
                                 .id(1L)
                                 .name("searched recipe 1")
@@ -114,7 +113,7 @@ public class RecipeControllerUnitTest {
                                 .name("searched recipe 2")
                                 .difficultyRating(10)
                                 .minutesToMake(10)
-                                .build())));
+                                .build()));
 
         mockMvc.perform(get("/recipes/search/searched"))
                 .andExpect(status().isOk())
@@ -139,7 +138,7 @@ public class RecipeControllerUnitTest {
     public void testGetAllRecipesSuccessBehavior() throws Exception {
 
         when(recipeService.getAllRecipes())
-                .thenReturn(new ArrayList<>(Arrays.asList(
+                .thenReturn(List.of(
                         Recipe.builder()
                                 .id(1L)
                                 .name("mocked name")
@@ -162,7 +161,7 @@ public class RecipeControllerUnitTest {
                                         .stepNumber(1)
                                         .description("mock the mock sauce")
                                         .build()))
-                                .build())));
+                                .build()));
 
         // set up get request for all recipe endpoint
         mockMvc.perform(get("/recipes"))

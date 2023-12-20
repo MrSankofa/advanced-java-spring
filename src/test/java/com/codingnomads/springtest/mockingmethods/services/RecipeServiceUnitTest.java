@@ -69,7 +69,7 @@ public class RecipeServiceUnitTest {
     @Test
     public void testGetRecipeByNameSuccessBehavior() throws Exception {
         when(recipeRepo.findByNameContaining(anyString()))
-                .thenReturn(new ArrayList<>(Arrays.asList(
+                .thenReturn(List.of(
                         Recipe.builder()
                                 .id(1L)
                                 .name("milkshake")
@@ -89,9 +89,9 @@ public class RecipeServiceUnitTest {
                                 .name("glass of milk")
                                 .difficultyRating(1)
                                 .minutesToMake(1)
-                                .build())));
+                                .build()));
 
-        ArrayList<Recipe> returnedRecipes = recipeService.getRecipesByName("milk");
+        List<Recipe> returnedRecipes = recipeService.getRecipesByName("milk");
 
         assertThat(returnedRecipes.size()).isEqualTo(2);
         assertThat(returnedRecipes.get(0).getLocationURI().toURL().toString()).isNotNull();
@@ -134,9 +134,9 @@ public class RecipeServiceUnitTest {
                         .build()))
                 .build();
 
-        when(recipeRepo.findAll()).thenReturn(new ArrayList<>(Collections.singletonList(pasta)));
+        when(recipeRepo.findAll()).thenReturn(Collections.singletonList(pasta));
 
-        ArrayList<Recipe> recipes = recipeService.getAllRecipes();
+        List<Recipe> recipes = recipeService.getAllRecipes();
 
         assertThat(recipes.size()).isEqualTo(1);
         assertThat(recipes.get(0)).isEqualTo(pasta);
