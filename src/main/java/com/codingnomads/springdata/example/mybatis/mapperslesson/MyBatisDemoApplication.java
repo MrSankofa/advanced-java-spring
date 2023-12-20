@@ -1,7 +1,8 @@
 /* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.mapperslesson;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -45,7 +46,7 @@ public class MyBatisDemoApplication {
 
             Song song3 = songMapper.getSongById(1L);
 
-            ArrayList<Song> longSongs = songMapper.getSongsWithLengthGreaterThan(250);
+            List<Song> longSongs = songMapper.getSongsWithLengthGreaterThan(250);
 
             longSongs.forEach(System.out::println);
 

@@ -5,7 +5,6 @@ import com.codingnomads.springdata.example.mybatis.oneandmany.mappers.ArtistMapp
 import com.codingnomads.springdata.example.mybatis.oneandmany.mappers.SongMapper;
 import com.codingnomads.springdata.example.mybatis.oneandmany.models.Artist;
 import com.codingnomads.springdata.example.mybatis.oneandmany.models.Song;
-import java.util.ArrayList;
 import java.util.Collections;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -44,7 +43,7 @@ public class OneAndManyApplication {
             song1.setAlbumName("Bon Iver");
             song1.setArtist(artist1);
             song1.setSongLength(232);
-            artist1.setSongs(new ArrayList<>(Collections.singletonList(song1)));
+            artist1.setSongs(Collections.singletonList(song1));
 
             Artist artist2 = new Artist();
             artist2.setName("Gus Dapperton");
@@ -57,7 +56,7 @@ public class OneAndManyApplication {
             song2.setAlbumName("Orca");
             song2.setArtist(artist2);
             song2.setSongLength(279);
-            artist2.setSongs(new ArrayList<>(Collections.singletonList(song2)));
+            artist2.setSongs(Collections.singletonList(song2));
 
             songMapper.insertNewSong(song1);
             songMapper.insertNewSong(song2);

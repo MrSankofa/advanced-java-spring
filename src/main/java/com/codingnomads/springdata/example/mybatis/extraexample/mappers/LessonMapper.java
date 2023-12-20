@@ -2,7 +2,6 @@
 package com.codingnomads.springdata.example.mybatis.extraexample.mappers;
 
 import com.codingnomads.springdata.example.mybatis.extraexample.models.Lesson;
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.annotations.*;
 
@@ -22,7 +21,7 @@ public interface LessonMapper {
                     @Result(
                             column = "id",
                             javaType = List.class,
-                            property = "imageArrayList",
+                            property = "imageList",
                             many =
                                     @Many(
                                             select =
@@ -31,7 +30,7 @@ public interface LessonMapper {
 
     @Select("SELECT id, name, text FROM mybatis.lessons WHERE chapter_id = #{param1};")
     @ResultMap("lessonResultMap")
-    ArrayList<Lesson> getLessonByChapterId(Long chapterId);
+    List<Lesson> getLessonByChapterId(Long chapterId);
 
     @Select("SELECT id, name, text FROM mybatis.lessons WHERE name = #{param1}")
     @ResultMap("lessonResultMap")

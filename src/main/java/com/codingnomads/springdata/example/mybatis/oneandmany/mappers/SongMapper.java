@@ -3,7 +3,8 @@ package com.codingnomads.springdata.example.mybatis.oneandmany.mappers;
 
 import com.codingnomads.springdata.example.mybatis.oneandmany.models.Artist;
 import com.codingnomads.springdata.example.mybatis.oneandmany.models.Song;
-import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -36,15 +37,15 @@ public interface SongMapper {
 
     @Select("SELECT * " + "FROM mybatis.songs " + "WHERE name = #{param1};")
     @ResultMap("songResultMap")
-    ArrayList<Song> getSongsByName(String name);
+    List<Song> getSongsByName(String name);
 
     @Select("SELECT * " + "FROM mybatis.songs " + "WHERE artist_id = #{param1} AND album_name = #{param2};")
     @ResultMap("songResultMap")
-    ArrayList<Song> getSongsByAlbumAndArtist(Long artistId, String albumName);
+    List<Song> getSongsByAlbumAndArtist(Long artistId, String albumName);
 
     @Select("SELECT * " + "FROM mybatis.songs " + "WHERE artist_id = #{param1};")
     @ResultMap("songResultMap")
-    ArrayList<Song> getSongsByArtistId(Long artistId);
+    List<Song> getSongsByArtistId(Long artistId);
 
     @Update("UPDATE mybatis.songs "
             + "SET name = #{name}, artist_id = #{artist.id}, album_name = #{albumName}, song_length = #{songLength} "

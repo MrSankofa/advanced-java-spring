@@ -4,7 +4,8 @@ package com.codingnomads.springdata.example.dml.usingqueryannotation;
 import com.codingnomads.springdata.example.dml.usingqueryannotation.models.Plant;
 import com.codingnomads.springdata.example.dml.usingqueryannotation.models.SoilType;
 import com.codingnomads.springdata.example.dml.usingqueryannotation.repositories.PlantRepo;
-import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -78,7 +79,7 @@ public class PlantService {
     public void getStuff() {
 
         System.out.println("SORTED FRUIT BEARING PLANTS");
-        ArrayList<Plant> plants = plantRepo.getFruitBearingPlants(Sort.by(Sort.Order.desc("id")));
+        List<Plant> plants = plantRepo.getFruitBearingPlants(Sort.by(Sort.Order.desc("id")));
 
         for (Plant p : plants) {
             System.out.println(p.toString());

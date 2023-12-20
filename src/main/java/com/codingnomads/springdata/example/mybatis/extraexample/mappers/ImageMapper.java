@@ -2,7 +2,8 @@
 package com.codingnomads.springdata.example.mybatis.extraexample.mappers;
 
 import com.codingnomads.springdata.example.mybatis.extraexample.models.Image;
-import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.annotations.*;
 
 @Mapper
@@ -18,7 +19,7 @@ public interface ImageMapper {
             + "JOIN mybatis.lesson_image li "
             + "ON i.name = li.image_name "
             + "WHERE li.lesson_id = #{param1}")
-    ArrayList<Image> getImagesByLessonId(Long lessonId);
+    List<Image> getImagesByLessonId(Long lessonId);
 
     @Update("UPDATE mybatis.images SET image_data = #{param2} WHERE name = #{param1};")
     int updateImageByName(String name, String newData);

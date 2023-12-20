@@ -1,7 +1,8 @@
 /* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.usingmappers.models;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -17,5 +18,5 @@ public class Artist {
 
     private String bio;
 
-    private ArrayList<Song> songs;
+    private List<Song> songs;
 }

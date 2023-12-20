@@ -10,5 +10,5 @@ public class Lesson {
     private Long id;
     private String name;
     private String text;
-    private List<Image> imageArrayList;
+    private List<Image> imageList;
 }

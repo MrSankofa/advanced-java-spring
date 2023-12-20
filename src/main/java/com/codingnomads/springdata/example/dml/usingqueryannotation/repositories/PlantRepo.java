@@ -2,7 +2,9 @@
 package com.codingnomads.springdata.example.dml.usingqueryannotation.repositories;
 
 import com.codingnomads.springdata.example.dml.usingqueryannotation.models.Plant;
-import java.util.ArrayList;
+
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,15 +20,15 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
 
     // use JPQL to query the database for a plant and its soil_type with JOIN
     @Query(value = "SELECT p, st FROM Plant p JOIN SoilType st ON p.favoriteSoilType.id = st.id")
-    ArrayList<Plant> findPlantEagerLoadSoilType();
+    List<Plant> findPlantEagerLoadSoilType();
 
     // use JPQL to query only the plant not the soil type
     @Query("SELECT p FROM Plant p")
-    ArrayList<Plant> getPlantsNoSoilType();
+    List<Plant> getPlantsNoSoilType();
 
     // use JPQL to query only fruit bearing plants without their soil types
     @Query("SELECT p FROM Plant p WHERE fruitBearing = true")
-    ArrayList<Plant> findFruitBearingPlants();
+    List<Plant> findFruitBearingPlants();
 
     // use native SQL to query the plant with id 1 without its soil type
     @Query(value = "SELECT * FROM plants WHERE id = 1", nativeQuery = true)
@@ -44,30 +46,30 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
     Plant getPlantByName(String plantName);
 
     @Query("SELECT p FROM Plant p WHERE numDaysTillRipeFruit > ?1 AND numDaysTillRipeFruit < ?2")
-    ArrayList<Plant> getPlantsBasedOnNumDaysTillRipeFruitRange(int minDays, int maxDays);
+    List<Plant> getPlantsBasedOnNumDaysTillRipeFruitRange(int minDays, int maxDays);
 
     @Query("SELECT p FROM Plant p WHERE fruitBearing = :fruitBearing")
-    ArrayList<Plant> getPlantBasedOnFruitBearing(@Param("fruitBearing") boolean fruitBearing);
+    List<Plant> getPlantBasedOnFruitBearing(@Param("fruitBearing") boolean fruitBearing);
 
     @Query(
             "SELECT p, st FROM Plant p JOIN SoilType st ON p.favoriteSoilType.id = st.id WHERE st.name = :soilTypeName AND p.fruitBearing = :fruitBearing")
-    ArrayList<Plant> getPlantsBasedOnSoilTypeAndFruitBearing(
+    List<Plant> getPlantsBasedOnSoilTypeAndFruitBearing(
             @Param("fruitBearing") boolean fruitBearing, @Param("soilTypeName") String soilTypeName);
 
     //////////////// SORTING USING @QUERY ////////////////
 
     // get all fruit bearing plants with the option to sort them
     @Query("SELECT p FROM Plant p WHERE fruitBearing = true")
-    ArrayList<Plant> getFruitBearingPlants(Sort sort);
+    List<Plant> getFruitBearingPlants(Sort sort);
 
     // get all plants with a particular sun type with the option to sort
     @Query("SELECT p FROM Plant p WHERE sunType = ?1")
-    ArrayList<Plant> getPlantsBasedOnSunType(String sunType, Sort sort);
+    List<Plant> getPlantsBasedOnSunType(String sunType, Sort sort);
 
     // get plants based on sun type, fruit bearing and a ph greater than a lower bound with the option to sort
     @Query(
             "SELECT p, st FROM Plant p JOIN SoilType st ON p.favoriteSoilType.id = st.id WHERE p.sunType = ?1 AND p.fruitBearing = ?2 AND st.ph > ?3")
-    ArrayList<Plant> getPlantsBasedOnSunTypeAndFruitBearingAndPhGreaterThan(
+    List<Plant> getPlantsBasedOnSunTypeAndFruitBearingAndPhGreaterThan(
             String sunType, boolean fruitBearing, double lowerPhBound, Sort sort);
 
     //////////////// PAGINATION USING @QUERY ////////////////

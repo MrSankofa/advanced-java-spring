@@ -1,7 +1,8 @@
 /* CodingNomads (C)2023 */
 package com.codingnomads.springdata.example.mybatis.resultsandresult;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.annotations.*;
 
 @Mapper
@@ -25,15 +26,15 @@ public interface SongMapper {
 
     @Select("SELECT * " + "FROM mybatis.songs " + "WHERE name = #{param1};")
     @ResultMap("songResultMap")
-    ArrayList<Song> getSongsByName(String name);
+    List<Song> getSongsByName(String name);
 
     @Select("SELECT * " + "FROM mybatis.songs " + "WHERE artist_name = #{param1} AND album_name = #{param2};")
     @ResultMap("songResultMap")
-    ArrayList<Song> getSongsByAlbumAndArtist(String artistName, String albumName);
+    List<Song> getSongsByAlbumAndArtist(String artistName, String albumName);
 
     @Select("SELECT * " + "FROM mybatis.songs " + "WHERE artist_name = #{param1};")
     @ResultMap("songResultMap")
-    ArrayList<Song> getSongsByArtist(String artistName);
+    List<Song> getSongsByArtist(String artistName);
 
     @Update("UPDATE mybatis.songs "
             + "SET name = #{name}, artist_name = #{artistName}, album_name = #{albumName}, song_length = #{songLength} "
