@@ -4,6 +4,7 @@ package com.codingnomads.springsecurity.authorization.addingauthorization.securi
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,14 +13,15 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity(debug = true)
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // disable CSRF filter to allow Postman to easily use the application
+                // disable CSRF to allow Postman to interact with the application
                 .csrf(csrf -> csrf.disable())
-                // start changing endpoint access settings
+                // start changing endpoint authorization requirements
                 .authorizeHttpRequests(auth -> auth
                         // the following 4 paths should be allowed to all always. They are static and are required to
                         // present the pages properly.

@@ -8,13 +8,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+
+import lombok.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 public class Recipe {

@@ -1,22 +1,19 @@
 /* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.recipeapi.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class MethodSecConfig extends GlobalMethodSecurityConfiguration {
+@EnableMethodSecurity
+public class MethodSecConfig {
 
-    @Autowired
-    CustomPermissionEvaluator customPermissionEvaluator;
-
-    @Override
-    protected MethodSecurityExpressionHandler createExpressionHandler() {
+    @Bean
+    static MethodSecurityExpressionHandler methodSecurityExpressionHandler(
+            CustomPermissionEvaluator customPermissionEvaluator) {
         DefaultMethodSecurityExpressionHandler handler = new DefaultMethodSecurityExpressionHandler();
         handler.setPermissionEvaluator(customPermissionEvaluator);
         return handler;

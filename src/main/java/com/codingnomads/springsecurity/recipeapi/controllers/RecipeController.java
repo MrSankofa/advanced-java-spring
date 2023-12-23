@@ -5,7 +5,8 @@ import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchRecipeExceptio
 import com.codingnomads.springsecurity.recipeapi.models.Recipe;
 import com.codingnomads.springsecurity.recipeapi.services.RecipeService;
 import java.security.Principal;
-import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +52,7 @@ public class RecipeController {
     @GetMapping("/search/{name}")
     public ResponseEntity<?> getRecipesByName(@PathVariable("name") String name) {
         try {
-            ArrayList<Recipe> matchingRecipes = recipeService.getRecipesByName(name);
+            List<Recipe> matchingRecipes = recipeService.getRecipesByName(name);
             return ResponseEntity.ok(matchingRecipes);
         } catch (NoSuchRecipeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

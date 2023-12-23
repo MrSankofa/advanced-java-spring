@@ -31,7 +31,7 @@ public class UserController {
     /*
        Method Security Annotations
 
-       @RolesAllowed("USER")
+       @RolesAllowed("ROLE_USER")
        @PreAuthorize("#id != 1")
        @PostAuthorize("returnObject.ownerUsername == authentication.principal.username")
        @PreFilter(value = "filterObject != shutdown", filterTarget = "commands")

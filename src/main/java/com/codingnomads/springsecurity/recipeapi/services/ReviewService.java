@@ -6,7 +6,6 @@ import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchReviewExceptio
 import com.codingnomads.springsecurity.recipeapi.models.Recipe;
 import com.codingnomads.springsecurity.recipeapi.models.Review;
 import com.codingnomads.springsecurity.recipeapi.repositories.ReviewRepo;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +40,10 @@ public class ReviewService {
         return review.get();
     }
 
-    public ArrayList<Review> getReviewByRecipeId(Long recipeId) throws NoSuchRecipeException, NoSuchReviewException {
+    public List<Review> getReviewByRecipeId(Long recipeId) throws NoSuchRecipeException, NoSuchReviewException {
         Recipe recipe = recipeService.getRecipeById(recipeId);
 
-        ArrayList<Review> reviews = new ArrayList<>(recipe.getReviews());
+        List<Review> reviews = recipe.getReviews().stream().toList();
 
         if (reviews.isEmpty()) {
             throw new NoSuchReviewException("There are no reviews for this recipe");
@@ -53,8 +52,8 @@ public class ReviewService {
         return reviews;
     }
 
-    public ArrayList<Review> getReviewByUsername(String username) throws NoSuchReviewException {
-        ArrayList<Review> reviews = reviewRepo.findByUser_Username(username);
+    public List<Review> getReviewByUsername(String username) throws NoSuchReviewException {
+        List<Review> reviews = reviewRepo.findByUser_Username(username);
 
         if (reviews.isEmpty()) {
             throw new NoSuchReviewException("No reviews could be found for username " + username);

@@ -1,25 +1,20 @@
 /* CodingNomads (C)2023 */
 package com.codingnomads.springsecurity.authorization.custompermissions.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 @Configuration
-// enable method security and make sure pre, and post-authorization is enabled
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class MethodSecConfig extends GlobalMethodSecurityConfiguration {
+// enable method security
+@EnableMethodSecurity
+public class MethodSecConfig {
 
-    // autowire in the CustomPermissionEvaluator that was registered as a bean using @Component
-    @Autowired
-    CustomPermissionEvaluator customPermissionEvaluator;
-
-    @Override
-    protected MethodSecurityExpressionHandler createExpressionHandler() {
-        // create a new DefaultMethodSecurityExpressionHandler to add the PermissionEvaluator to
+    @Bean
+    static MethodSecurityExpressionHandler expressionHandler(CustomPermissionEvaluator customPermissionEvaluator) {
+        // create a new DefaultMethodSecurityExpressionHandler that will utilize CustomPermissionEvaluator
         DefaultMethodSecurityExpressionHandler handler = new DefaultMethodSecurityExpressionHandler();
         // add the PermissionEvaluator
         handler.setPermissionEvaluator(customPermissionEvaluator);

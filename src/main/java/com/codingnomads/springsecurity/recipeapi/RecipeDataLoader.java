@@ -16,10 +16,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
+@Component
 @Profile("test")
-public class TestMain implements CommandLineRunner {
+public class RecipeDataLoader implements CommandLineRunner {
 
     @Autowired
     RecipeRepo recipeRepo;

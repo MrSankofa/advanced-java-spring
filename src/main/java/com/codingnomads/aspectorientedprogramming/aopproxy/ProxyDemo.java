@@ -19,7 +19,7 @@ public class ProxyDemo implements CommandLineRunner {
     PersonService personService;
 
     public static void main(String[] args) {
-        SpringApplication.run(ProxyDemo.class);
+        SpringApplication.run(ProxyDemo.class, args);
     }
 
     @Override

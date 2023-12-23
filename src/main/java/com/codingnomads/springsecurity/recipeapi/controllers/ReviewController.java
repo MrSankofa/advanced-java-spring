@@ -6,7 +6,6 @@ import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchReviewExceptio
 import com.codingnomads.springsecurity.recipeapi.models.Recipe;
 import com.codingnomads.springsecurity.recipeapi.models.Review;
 import com.codingnomads.springsecurity.recipeapi.services.ReviewService;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +42,7 @@ public class ReviewController {
     @GetMapping("/recipe/{recipeId}")
     public ResponseEntity<?> getReviewByRecipeId(@PathVariable("recipeId") Long recipeId) {
         try {
-            ArrayList<Review> reviews = reviewService.getReviewByRecipeId(recipeId);
+            List<Review> reviews = reviewService.getReviewByRecipeId(recipeId);
             return ResponseEntity.ok(reviews);
         } catch (NoSuchRecipeException | NoSuchReviewException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -53,7 +52,7 @@ public class ReviewController {
     @GetMapping("/user/{username}")
     public ResponseEntity<?> getReviewByUsername(@PathVariable("username") String username) {
         try {
-            ArrayList<Review> reviews = reviewService.getReviewByUsername(username);
+            List<Review> reviews = reviewService.getReviewByUsername(username);
             return ResponseEntity.ok(reviews);
         } catch (NoSuchReviewException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

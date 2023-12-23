@@ -6,6 +6,9 @@ import com.codingnomads.springsecurity.recipeapi.models.securitymodels.CustomUse
 import com.codingnomads.springsecurity.recipeapi.models.securitymodels.Role;
 import com.codingnomads.springsecurity.recipeapi.repositories.UserRepo;
 import java.util.Collections;
+import java.util.Optional;
+
+import jakarta.persistence.EntityNotFoundException;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,9 +16,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Component
+@Service
 public class CustomUserDetailService implements UserDetailsService {
 
     @Autowired
@@ -37,10 +41,13 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Transactional(readOnly = true)
     public CustomUserDetails getByUserId(Long userId) throws NoSuchUserException {
-        CustomUserDetails user = userRepo.getOne(userId);
 
-        if (null == user) {
-            throw new NoSuchUserException("No user could be found with that ID");
+        Optional<CustomUserDetails> optional = userRepo.findById(userId);
+        CustomUserDetails user;
+        if (optional.isEmpty()) {
+            throw new EntityNotFoundException("User not found.");
+        } else {
+            user = optional.get();
         }
 
         return (CustomUserDetails) Hibernate.unproxy(user);
