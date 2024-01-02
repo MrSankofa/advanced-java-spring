@@ -3,6 +3,7 @@ package com.codingnomads.cachingwithspring.demo.controller;
 
 import com.codingnomads.cachingwithspring.demo.model.Employee;
 import com.codingnomads.cachingwithspring.demo.service.EmployeeService;
+import java.net.URI;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,9 @@ public class EmployeeController {
 
     @PostMapping("/employees")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
-        return ResponseEntity.ok(employeeService.saveEmployee(employee));
+        employee = employeeService.saveEmployee(employee);
+        return ResponseEntity.created(URI.create("/employees/" + employee.getId()))
+                .body(employee);
     }
 
     @GetMapping("/employees")
@@ -39,8 +42,8 @@ public class EmployeeController {
     }
 
     @DeleteMapping("employees/{id}")
-    public ResponseEntity<Object> deleteEmployee(@PathVariable(value = "id") Integer employeeId) {
+    public ResponseEntity<?> deleteEmployee(@PathVariable(value = "id") Integer employeeId) {
         employeeService.deleteEmployee(employeeId);
-        return ResponseEntity.ok(new Object());
+        return ResponseEntity.ok().build();
     }
 }

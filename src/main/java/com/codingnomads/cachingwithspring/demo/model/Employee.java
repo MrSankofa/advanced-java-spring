@@ -15,11 +15,13 @@ import lombok.Setter;
 @Entity
 public class Employee implements Serializable {
 
-    private static final long serialVersionUID = 6527855645691638321L;
-
     @Id
     @GeneratedValue
     private int id;
 
     private String name;
+
+    public Employee(String name) {
+        this.name = name;
+    }
 }
