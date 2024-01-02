@@ -24,78 +24,62 @@ public class RecipeDataLoader implements CommandLineRunner {
         System.out.println("STARTING WITH TEST DATABASE SETUP");
         if (recipeRepo.findAll().isEmpty()) {
 
-            Ingredient ingredient =
-                    Ingredient.builder()
-                            .name("flour")
-                            .state("dry")
-                            .amount("2 cups")
-                            .build();
-            Step step1 =
-                    Step.builder()
-                            .description("put flour in bowl")
-                            .stepNumber(1)
-                            .build();
-            Step step2 =
-                    Step.builder()
-                            .description("eat it?")
-                            .stepNumber(2)
-                            .build();
+            Ingredient ingredient = Ingredient.builder()
+                    .name("flour")
+                    .state("dry")
+                    .amount("2 cups")
+                    .build();
+            Step step1 = Step.builder()
+                    .description("put flour in bowl")
+                    .stepNumber(1)
+                    .build();
+            Step step2 = Step.builder().description("eat it?").stepNumber(2).build();
 
-            Review review =
-                    Review.builder()
-                            .description("tasted pretty bad")
-                            .rating(2)
-                            .username("idfk")
-                            .build();
+            Review review = Review.builder()
+                    .description("tasted pretty bad")
+                    .rating(2)
+                    .username("idfk")
+                    .build();
 
-            Recipe recipe1 =
-                    Recipe.builder()
-                            .name("test recipe")
-                            .difficultyRating(10)
-                            .minutesToMake(2)
-                            .ingredients(Set.of(ingredient))
-                            .steps(Set.of(step1, step2))
-                            .reviews(Set.of(review))
-                            .username("bob")
-                            .build();
+            Recipe recipe1 = Recipe.builder()
+                    .name("test recipe")
+                    .difficultyRating(10)
+                    .minutesToMake(2)
+                    .ingredients(Set.of(ingredient))
+                    .steps(Set.of(step1, step2))
+                    .reviews(Set.of(review))
+                    .username("bob")
+                    .build();
 
             recipeRepo.save(recipe1);
 
             ingredient.setId(null);
-            Recipe recipe2 =
-                    Recipe.builder()
-                            .steps(Set.of(Step.builder()
-                                    .description("test")
-                                    .build()))
-                            .ingredients(Set.of(
-                                    Ingredient.builder()
-                                            .name("test ing")
-                                            .amount("1")
-                                            .state("dry")
-                                            .build()))
-                            .name("another test recipe")
-                            .difficultyRating(10)
-                            .minutesToMake(2)
-                            .username("Sally")
-                            .build();
+            Recipe recipe2 = Recipe.builder()
+                    .steps(Set.of(Step.builder().description("test").build()))
+                    .ingredients(Set.of(Ingredient.builder()
+                            .name("test ing")
+                            .amount("1")
+                            .state("dry")
+                            .build()))
+                    .name("another test recipe")
+                    .difficultyRating(10)
+                    .minutesToMake(2)
+                    .username("Sally")
+                    .build();
             recipeRepo.save(recipe2);
 
-            Recipe recipe3 =
-                    Recipe.builder()
-                            .steps(Set.of(Step.builder()
-                                    .description("test 2")
-                                    .build()))
-                            .ingredients(Set.of(
-                                    Ingredient.builder()
-                                            .name("test ing 2")
-                                            .amount("2")
-                                            .state("wet")
-                                            .build()))
-                            .name("another another test recipe")
-                            .difficultyRating(5)
-                            .minutesToMake(2)
-                            .username("Mark")
-                            .build();
+            Recipe recipe3 = Recipe.builder()
+                    .steps(Set.of(Step.builder().description("test 2").build()))
+                    .ingredients(Set.of(Ingredient.builder()
+                            .name("test ing 2")
+                            .amount("2")
+                            .state("wet")
+                            .build()))
+                    .name("another another test recipe")
+                    .difficultyRating(5)
+                    .minutesToMake(2)
+                    .username("Mark")
+                    .build();
 
             recipeRepo.save(recipe3);
 

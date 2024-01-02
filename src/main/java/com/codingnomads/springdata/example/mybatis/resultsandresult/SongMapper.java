@@ -2,7 +2,6 @@
 package com.codingnomads.springdata.example.mybatis.resultsandresult;
 
 import java.util.List;
-
 import org.apache.ibatis.annotations.*;
 
 @Mapper

@@ -3,7 +3,6 @@ package com.codingnomads.springdata.example.mybatis.extraexample.mappers;
 
 import com.codingnomads.springdata.example.mybatis.extraexample.models.Image;
 import java.util.List;
-
 import org.apache.ibatis.annotations.*;
 
 @Mapper

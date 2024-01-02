@@ -5,17 +5,15 @@ import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchUserException;
 import com.codingnomads.springsecurity.recipeapi.models.securitymodels.CustomUserDetails;
 import com.codingnomads.springsecurity.recipeapi.models.securitymodels.Role;
 import com.codingnomads.springsecurity.recipeapi.repositories.UserRepo;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.Collections;
 import java.util.Optional;
-
-import jakarta.persistence.EntityNotFoundException;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

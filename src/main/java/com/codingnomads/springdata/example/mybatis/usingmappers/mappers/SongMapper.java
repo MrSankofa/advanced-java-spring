@@ -4,7 +4,6 @@ package com.codingnomads.springdata.example.mybatis.usingmappers.mappers;
 import com.codingnomads.springdata.example.mybatis.usingmappers.models.Artist;
 import com.codingnomads.springdata.example.mybatis.usingmappers.models.Song;
 import java.util.List;
-
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 

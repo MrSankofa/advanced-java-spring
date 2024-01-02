@@ -4,7 +4,6 @@ package com.codingnomads.springdata.example.mybatis.oneandmany.mappers;
 import com.codingnomads.springdata.example.mybatis.oneandmany.models.Artist;
 import com.codingnomads.springdata.example.mybatis.oneandmany.models.Song;
 import java.util.List;
-
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 

@@ -8,7 +8,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-
 import lombok.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 

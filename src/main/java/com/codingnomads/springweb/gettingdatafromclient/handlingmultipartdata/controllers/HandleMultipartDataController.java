@@ -86,9 +86,9 @@ public class HandleMultipartDataController {
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(databaseFile.getFileType()))
                 // display the file inline
-                //.header(HttpHeaders.CONTENT_DISPOSITION, "inline")
+                // .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
                 // download file, without setting file name
-                //.header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
+                // .header(HttpHeaders.CONTENT_DISPOSITION, "attachment")
                 // download file, and specify file name
                 .header(
                         HttpHeaders.CONTENT_DISPOSITION,

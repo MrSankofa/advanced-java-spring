@@ -5,7 +5,6 @@ import com.codingnomads.springtest.mockingmethods.exceptions.NoSuchRecipeExcepti
 import com.codingnomads.springtest.mockingmethods.models.Recipe;
 import com.codingnomads.springtest.mockingmethods.services.RecipeService;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

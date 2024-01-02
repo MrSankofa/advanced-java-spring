@@ -5,7 +5,6 @@ import com.codingnomads.springdata.example.dml.usingqueryannotation.models.Plant
 import com.codingnomads.springdata.example.dml.usingqueryannotation.models.SoilType;
 import com.codingnomads.springdata.example.dml.usingqueryannotation.repositories.PlantRepo;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
