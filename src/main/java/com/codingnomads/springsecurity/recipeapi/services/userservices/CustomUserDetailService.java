@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springsecurity.recipeapi.services.userservices;
 
 import com.codingnomads.springsecurity.recipeapi.exceptions.NoSuchUserException;

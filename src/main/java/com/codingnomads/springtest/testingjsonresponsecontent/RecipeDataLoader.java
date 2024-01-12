@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springtest.testingjsonresponsecontent;
 
 import com.codingnomads.springtest.testingjsonresponsecontent.models.Ingredient;

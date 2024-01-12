@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springtest.testingjsonresponsecontent.withjsonpath;
 
 import static org.hamcrest.MatcherAssert.assertThat;

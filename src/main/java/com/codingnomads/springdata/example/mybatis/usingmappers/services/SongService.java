@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springdata.example.mybatis.usingmappers.services;
 
 import com.codingnomads.springdata.example.mybatis.usingmappers.mappers.ArtistMapper;

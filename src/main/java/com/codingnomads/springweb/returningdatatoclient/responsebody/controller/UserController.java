@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springweb.returningdatatoclient.responsebody.controller;
 
 import com.codingnomads.springweb.returningdatatoclient.responsebody.model.User;

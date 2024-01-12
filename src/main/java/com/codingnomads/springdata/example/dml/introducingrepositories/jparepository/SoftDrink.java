@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springdata.example.dml.introducingrepositories.jparepository;
 
 import jakarta.persistence.*;

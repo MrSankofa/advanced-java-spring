@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springdata.example.moderndatabaseintegration.jpa;
 
 import jakarta.persistence.Entity;

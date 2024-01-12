@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springsecurity.authentication.usernamepassword.services;
 
 import com.codingnomads.springsecurity.authentication.usernamepassword.models.UserPrincipal;

@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.corespring.examples.primaryannotation;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springsecurity.authorization.addingauthorization.repositories;
 
 import com.codingnomads.springsecurity.authorization.addingauthorization.models.UserPrincipal;

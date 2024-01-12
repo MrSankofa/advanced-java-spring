@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.aspectorientedprogramming.aop.config;
 
 import org.springframework.context.annotation.Configuration;

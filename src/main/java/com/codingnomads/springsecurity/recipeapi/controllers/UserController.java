@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springsecurity.recipeapi.controllers;
 
 import com.codingnomads.springsecurity.recipeapi.models.securitymodels.CustomUserDetails;

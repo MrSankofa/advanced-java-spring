@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springdata.example.ddl.manytoone.unidirectional.usingmanytoone;
 
 import org.springframework.boot.SpringApplication;

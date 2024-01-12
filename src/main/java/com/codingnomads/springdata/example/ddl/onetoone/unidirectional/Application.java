@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springdata.example.ddl.onetoone.unidirectional;
 
 import org.springframework.boot.SpringApplication;

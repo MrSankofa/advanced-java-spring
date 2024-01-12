@@ -1,4 +1,4 @@
-/* CodingNomads (C)2023 */
+/* CodingNomads (C)2024 */
 package com.codingnomads.springweb.resttemplate.GET.getForObject.video_demo;
 
 @lombok.Data
