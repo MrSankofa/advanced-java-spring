@@ -25,7 +25,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 // commented out, so it's not picked up by Spring
 // @Configuration
-// @EnableWebSecurity(debug = true)
+// @EnableWebSecurity
 public class MultipleProviderExample {
 
     @Autowired
