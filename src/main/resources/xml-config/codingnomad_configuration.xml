@@ -4,19 +4,19 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-    <context:component-scan base-package="platform.codingnomads.co.corespring.examples.application_context.xml"/>
+    <context:component-scan base-package="com.codingnomads.corespring.examples.application_context.xml"/>
 
-    <bean id="framework" class="platform.codingnomads.co.corespring.examples.application_context.xml.Framework">
+    <bean id="framework" class="com.codingnomads.corespring.examples.application_context.xml.Framework">
         <property name="name" value="Spring Boot"/>
-        <property name="version" value="2.5"/>
+        <property name="version" value="3.2"/>
     </bean>
-    <bean id="ide" class="platform.codingnomads.co.corespring.examples.application_context.xml.IDE">
+    <bean id="ide" class="com.codingnomads.corespring.examples.application_context.xml.IDE">
         <property name="name" value="IntelliJ IDEA"/>
-        <property name="version" value="2021.1"/>
+        <property name="version" value="2023.5"/>
     </bean>
-    <bean id="jdk" class="platform.codingnomads.co.corespring.examples.application_context.xml.JDK">
+    <bean id="jdk" class="com.codingnomads.corespring.examples.application_context.xml.JDK">
         <property name="name" value="OpenJDK"/>
-        <property name="version" value="11"/>
+        <property name="version" value="17"/>
     </bean>
 
 </beans>
