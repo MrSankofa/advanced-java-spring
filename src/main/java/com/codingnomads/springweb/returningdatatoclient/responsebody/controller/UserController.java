@@ -14,7 +14,7 @@ public class UserController {
     public User user = User.builder()
             .id(1000)
             .name("Spring Dev")
-            .email("dev@codingnomads.co")
+            .email("dev@codingnomads.com")
             .build();
 
     // using ResponseBody to return a POJO
