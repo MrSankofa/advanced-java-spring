@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class ScopeAnnotationDemoConfig {
     @Bean
-    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public SingletonBean singletonBean() {
         return new SingletonBean();
     }
