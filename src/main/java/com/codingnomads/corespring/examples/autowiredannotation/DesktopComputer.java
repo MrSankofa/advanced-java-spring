@@ -11,5 +11,6 @@ import org.springframework.stereotype.Component;
 public class DesktopComputer {
 
     @Autowired
-    @Qualifier("radeon") private VideoCard videoCard;
+    @Qualifier("radeon")
+    private VideoCard videoCard;
 }
