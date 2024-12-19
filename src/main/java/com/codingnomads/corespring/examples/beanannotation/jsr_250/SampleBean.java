@@ -19,4 +19,12 @@ public class SampleBean {
     public void cleanup() {
         System.out.println("time to @PreDestroy and head home..");
     }
+
+    @PostConstruct
+    public void populate() { System.out.println("populate method called"); }
+
+    @PreDestroy
+    public void backupDeleted() {
+        System.out.println("Saved deleted just in case you didn't mean to :) ");
+    }
 }
