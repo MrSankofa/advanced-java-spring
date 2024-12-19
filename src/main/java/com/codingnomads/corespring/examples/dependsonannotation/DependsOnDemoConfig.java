@@ -15,7 +15,11 @@ public class DependsOnDemoConfig {
     }
 
     @Bean("jdk")
+    @DependsOn("ide")
     public JDK jdk() {
         return new JDK();
     }
+
+    @Bean("ide")
+    public IDE ide() { return new IDE(); }
 }
