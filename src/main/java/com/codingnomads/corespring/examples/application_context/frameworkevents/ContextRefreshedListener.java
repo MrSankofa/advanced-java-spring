@@ -1,6 +1,7 @@
 /* CodingNomads (C)2024 */
 package com.codingnomads.corespring.examples.application_context.frameworkevents;
 
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.lang.NonNull;

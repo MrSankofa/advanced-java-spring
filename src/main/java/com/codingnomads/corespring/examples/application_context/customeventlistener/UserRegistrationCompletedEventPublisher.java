@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserRegistrationCompletedEventPublisher {
 
+    // automatically injected due to being private final
     private final ApplicationEventPublisher applicationEventPublisher;
 
     public void publishEventAndSendEmail(final String message) {

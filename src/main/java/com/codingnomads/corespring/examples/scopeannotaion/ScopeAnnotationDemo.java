@@ -17,13 +17,13 @@ public class ScopeAnnotationDemo {
         System.out.println(singletonBean1.hashCode());
         System.out.println(singletonBean2.hashCode());
 
-        final PrototypeBean prototypeBean1 = ctx.getBean(PrototypeBean.class);
-        final PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
-
-        System.out.println("-----Hashcode of PrototypeBean-----");
-        System.out.println(prototypeBean1.hashCode());
-        System.out.println(prototypeBean2.hashCode());
-        System.out.println();
+//        final PrototypeBean prototypeBean1 = ctx.getBean(PrototypeBean.class);
+//        final PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
+//
+//        System.out.println("-----Hashcode of PrototypeBean-----");
+//        System.out.println(prototypeBean1.hashCode());
+//        System.out.println(prototypeBean2.hashCode());
+//        System.out.println();
         ctx.close();
     }
 }

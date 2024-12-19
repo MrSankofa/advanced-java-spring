@@ -12,4 +12,7 @@ public class SpringBeansDemoConfig {
     public Address address() {
         return new Address("Main Street", 1500);
     }
+
+    @Bean
+    public Employer employer() { return new Employer("SBE", 5, 100000); }
 }
