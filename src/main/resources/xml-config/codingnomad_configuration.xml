@@ -19,4 +19,8 @@
         <property name="version" value="17"/>
     </bean>
 
+    <bean id="junit" class="com.codingnomads.corespring.examples.application_context.xml.JUnit">
+        <property name="version" value="3.1.2"></property>
+    </bean>
+
 </beans>
