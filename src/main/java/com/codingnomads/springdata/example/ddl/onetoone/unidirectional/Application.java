@@ -13,13 +13,4 @@ public class Application {
         SpringApplication.run(Application.class);
     }
 
-    @Bean
-    CommandLineRunner testRunner(CarRepository carRepository) {
-        return args -> {
-            Car car = new Car();
-            car.setBrand("Toyota");
-            car.setHorsepower("200");
-            carRepository.save(car);
-        };
-    }
 }
