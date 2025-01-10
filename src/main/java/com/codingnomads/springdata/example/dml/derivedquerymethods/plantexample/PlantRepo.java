@@ -2,6 +2,8 @@
 package com.codingnomads.springdata.example.dml.derivedquerymethods.plantexample;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +15,7 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
     //////////////// INTRODUCER VARIATIONS ////////////////
 
     List<Plant> findByName(String name);
+    // select * from plant where name = $name;
 
     List<Plant> queryByName(String name);
 
@@ -27,8 +30,14 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
     // find all plants with names starting with namePrefix
     List<Plant> findByNameStartingWith(String namePrefix);
 
+
+    // select * from plant where name like "**$namePrefix"
+
     // find all plants with names ending in nameSuffix
     List<Plant> findByNameEndingWith(String nameSuffix);
+
+    // select * from plant where name like "$namePrefix**"
+
 
     // find all plants with names containing pattern
     List<Plant> findByNameContaining(String pattern);
@@ -48,7 +57,7 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
     List<Plant> findBySunTypeIsNotNull();
 
     // use IsTrue and IsFalse instead of findByFruitBearing(boolean fruitBearing);
-    List<Plant> findByFruitBearingIsTrue();
+    List<Plant> findByFruitBearingIsTrue(); // need to work boolean properties
 
     List<Plant> findByFruitBearingIsFalse();
 
@@ -65,13 +74,14 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
     //////////////// NESTED PROPERTY CHARACTER ////////////////
 
     // find plants with a favorite soil type with pHs less than a passed in value
-    List<Plant> findByFavoriteSoilType_phLessThan(long ph);
+    List<Plant> findByFavoriteSoilType_phLessThan(long ph); // composite object properties
 
     // find plants who's favorite soil is dry
     List<Plant> findByFavoriteSoilType_dryIsTrue();
 
     // find plants with a certain soil type identified by its ID
-    List<Plant> findByFavoriteSoilType_id(long soilTypeId);
+//    List<Plant> findByFavoriteSoilType_id(long soilTypeId);
+    Optional<Plant> findByFavoriteSoilType_id(long soilTypeId);
 
     //////////////// LIMITING KEYWORDS ////////////////
 
@@ -92,6 +102,14 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
     List<Plant> findDistinctByFavoriteSoilType_phLessThan(long ph);
 
     // distinct before limit keyword
+    /*
+    * SELECT DISTINCT p.*
+        FROM plant p
+        JOIN favorite_soil_type f ON p.favorite_soil_type_id = f.id
+        WHERE f.ph < :ph
+        ORDER BY p.id DESC
+        LIMIT 5;
+    * */
     List<Plant> findDistinctLast5ByFavoriteSoilType_phLessThan(long ph);
 
     // distinct after limit keyword

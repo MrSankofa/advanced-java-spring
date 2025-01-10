@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -19,8 +20,19 @@ public class Cars {
   @Id
   private Long id;
 
+
   public Cars() {
   }
+
+  @Builder
+  public Cars(String name, String make, String model, int year, Long id) {
+    this.name = name;
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.id = id;
+  }
+
 
   public void setId(Long id) {
     this.id = id;
