@@ -52,6 +52,33 @@ public class TransactionalApplication implements CommandLineRunner {
 //         System.out.println(pointService.getPointById(1L).toString());
          pointService.noExceptionExpected();
 
+
+         /*
+         * Testing the Behavior
+            Test Case 1: Valid Input
+
+            * Input:pointService.savePointWithAudit(1L, 5, 5);
+
+            * Expected Outcome:
+
+            A Point with x=5 and y=5 is saved to the database.
+            An audit log entry is created: "Point updated to x=5, y=5".
+
+            * Test Case 2: Invalid Input
+
+            * Input: pointService.savePointWithAudit(2L, -1, 5);
+
+            * Expected Outcome:
+
+            The main transaction rolls back (the Point is not saved).
+            The audit log persists successfully with the message: "Point updated to x=-1, y=5".
+
+         *
+         * */
+        pointService.savePointWithAudit(1L, 5, 5);
+//        pointService.savePointWithAudit(2L, -1, 5);
+
+
         try {
             pointService.rollbackFor();
         } catch (IOException e) {
