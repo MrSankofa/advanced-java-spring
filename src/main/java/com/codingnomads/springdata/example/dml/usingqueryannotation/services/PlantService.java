@@ -1,5 +1,5 @@
 /* CodingNomads (C)2024 */
-package com.codingnomads.springdata.example.dml.usingqueryannotation;
+package com.codingnomads.springdata.example.dml.usingqueryannotation.services;
 
 import com.codingnomads.springdata.example.dml.usingqueryannotation.models.Plant;
 import com.codingnomads.springdata.example.dml.usingqueryannotation.models.SoilType;
