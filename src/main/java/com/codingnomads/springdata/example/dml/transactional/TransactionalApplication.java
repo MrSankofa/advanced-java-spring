@@ -23,16 +23,34 @@ public class TransactionalApplication implements CommandLineRunner {
 
         // @Transactional I
 
-        pointService.foo();
-        // pointService.doSomeWork();
+        /*
+        * Yes, it is true that you cannot run pointService.foo()
+        * by itself without causing an exception.
+        * This is because the @Transactional(propagation = Propagation.MANDATORY) annotation on foo()
+        * requires that the method be called within an existing transaction.
+        *  If you try to call it directly from TransactionalApplication.run()
+        * (which doesn’t create a transaction),
+        * Spring will throw an exception indicating that no transaction exists.
+        * */
+//        pointService.foo();
+         pointService.doSomeWork();
 
-        // @Transactional II
+        // @Transactional II make sure you have the previous transaction working so that the next works
 
-        // pointService.timeOutAfter5();
-        // pointService.triggerTimeout();
+         pointService.timeOutAfter5();
+//         pointService.triggerTimeout();
 
-        // System.out.println(pointService.getPointById(1L).toString());
-        // pointService.noExceptionExpected();
+        /*
+        * The org.hibernate.LazyInitializationException occurs because Hibernate tries to lazily load an entity
+        *  (Point in this case) outside of an active Session or transaction. Lazy loading requires an active Session
+        * to fetch the data, and when the Session is closed (e.g., after the transactional context ends),
+        * Hibernate cannot initialize the proxy object for the entity.
+        *
+        * to solve this you need to execute this query within a session
+        *
+        * */
+//         System.out.println(pointService.getPointById(1L).toString());
+         pointService.noExceptionExpected();
 
         try {
             pointService.rollbackFor();
