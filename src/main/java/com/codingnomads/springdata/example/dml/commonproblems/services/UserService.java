@@ -5,8 +5,13 @@ import com.codingnomads.springdata.example.dml.commonproblems.models.Address;
 import com.codingnomads.springdata.example.dml.commonproblems.models.ContactCard;
 import com.codingnomads.springdata.example.dml.commonproblems.models.User;
 import com.codingnomads.springdata.example.dml.commonproblems.repositories.UserRepo;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.security.Provider;
 
 @Service
 public class UserService {
@@ -14,6 +19,10 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
 
+    @PersistenceContext
+    EntityManager entityManager;
+
+    @Transactional
     public void persistAFewUsers() {
 
         // set up an Address
@@ -24,6 +33,9 @@ public class UserService {
                 .state("CA")
                 .country("United States")
                 .build();
+
+        address = entityManager.merge(address);
+
 
         // create new ContactCard
         ContactCard contactCard =
@@ -38,6 +50,9 @@ public class UserService {
         // save User to the db
         userRepo.save(user);
 
+//        address = entityManager.merge(address);
+
+
         // create a new ContactCard and reassign contactCard
         contactCard = ContactCard.builder()
                 .emailAddress("george@email.com")
@@ -51,6 +66,8 @@ public class UserService {
                 .build();
         // save new User assigned to user
         userRepo.save(user);
+
+//        address = entityManager.merge(address);
 
         // create new ContactCard and assign it to contactCard
         contactCard = ContactCard.builder()
