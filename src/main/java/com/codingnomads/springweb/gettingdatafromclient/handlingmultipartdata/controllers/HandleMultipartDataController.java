@@ -30,6 +30,21 @@ public class HandleMultipartDataController {
     @PostMapping()
     public ResponseEntity<?> uploadFile(@RequestBody MultipartFile file) {
 
+        final long MAX_FILE_SIZE = 5L * 1024 * 1024 * 1024; // 5 GB
+
+        if (file == null || file.isEmpty()) {
+            return ResponseEntity.badRequest()
+                .body("File is empty. Please upload a valid file.");
+        }
+
+        if (file.getSize() > MAX_FILE_SIZE) {
+            return ResponseEntity.badRequest()
+                .body("File size exceeds the limit of 5GB.");
+        } else {
+            System.out.println("File size is " + file.getSize() + "this isn't too large at all");
+        }
+
+
         String fileName;
         // get the original file name
         if (file == null) {
