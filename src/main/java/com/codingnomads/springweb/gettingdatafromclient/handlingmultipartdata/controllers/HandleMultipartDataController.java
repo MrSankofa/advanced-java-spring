@@ -111,6 +111,20 @@ public class HandleMultipartDataController {
                 .body(new ByteArrayResource(databaseFile.getData()));
     }
 
+    @GetMapping("/details/{id}")
+    public ResponseEntity<?> getFileDetails(@PathVariable(name = "id") Long fileId) {
+        final Optional<DatabaseFile> optional = fileRepository.findById(fileId);
+
+        if (optional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("File not found with id: " + fileId);
+        }
+
+        DatabaseFile databaseFile = optional.get();
+
+        return ResponseEntity.ok(databaseFile);
+    }
+
+
     // @PutMapping("/uploadSingleFile/{id}")
     @PutMapping("/{id}")
     public ResponseEntity<?> updateFileById(@PathVariable(name = "id") Long fileId, @RequestBody MultipartFile file) {
