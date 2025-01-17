@@ -3,8 +3,14 @@ package com.codingnomads.springweb.gettingdatafromclient.handlingmultipartdata.m
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.sql.Timestamp;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @Builder
@@ -26,4 +32,12 @@ public class DatabaseFile {
 
     @Transient
     private String downloadUrl;
+
+    @CreatedDate
+    @Column(name = "date_created", nullable = false, updatable = false)
+    private Timestamp dateCreated;
+
+    @LastModifiedDate
+    @Column(name = "date_updated", nullable = false)
+    private Timestamp dateUpdated;
 }
