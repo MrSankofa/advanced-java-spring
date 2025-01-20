@@ -12,6 +12,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
+
 // tell Spring to start completely and indicate the location of the bootstrapping class
 @SpringBootTest(classes = MockMvcMain.class) // entry point for the application we want to test
 // indicate that Spring should autoconfigure the MockMvc object
@@ -48,5 +50,25 @@ public class TestWebServices {
                 .andDo(print())
                 // the view name expected is greeting
                 .andExpect(view().name("greeting"));
+    }
+
+    @Test
+    public void contactPageShouldHaveContactText() throws Exception {
+        mockMvc.perform(get("/contact")).andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("contact"));
+    }
+
+    @Test
+    public void randomQuoteRouteShouldHaveRandomQuote() throws Exception {
+        String[] options = {
+            "Believe in yourself!",
+            "Every day is a second chance.",
+            "Dream big, work hard."
+        };
+
+        mockMvc.perform(get("/quote")).andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().string(org.hamcrest.Matchers.isOneOf(options)));
     }
 }
