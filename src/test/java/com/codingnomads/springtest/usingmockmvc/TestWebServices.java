@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 // tell Spring to start completely and indicate the location of the bootstrapping class
-@SpringBootTest(classes = MockMvcMain.class)
+@SpringBootTest(classes = MockMvcMain.class) // entry point for the application we want to test
 // indicate that Spring should autoconfigure the MockMvc object
 @AutoConfigureMockMvc
 public class TestWebServices {

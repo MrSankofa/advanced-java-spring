@@ -2,12 +2,11 @@
 package com.codingnomads.springweb.gettingdatafromclient.handlingmultipartdata.models;
 
 import jakarta.persistence.*;
+import java.sql.Timestamp;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.sql.Timestamp;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)

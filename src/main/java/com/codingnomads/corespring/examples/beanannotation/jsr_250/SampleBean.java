@@ -21,7 +21,9 @@ public class SampleBean {
     }
 
     @PostConstruct
-    public void populate() { System.out.println("populate method called"); }
+    public void populate() {
+        System.out.println("populate method called");
+    }
 
     @PreDestroy
     public void backupDeleted() {

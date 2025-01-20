@@ -1,3 +1,4 @@
+/* CodingNomads (C)2025 */
 package com.codingnomads.springweb.resttemplate.GET.models;
 
 import lombok.Builder;
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Builder
 @Data
 public class ExcuserTemplate {
-  private int id;
-  private String excuse;
-  private String category;
+    private int id;
+    private String excuse;
+    private String category;
 }

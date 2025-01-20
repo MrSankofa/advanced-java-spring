@@ -3,7 +3,6 @@ package com.codingnomads.springdata.example.dml.derivedquerymethods.plantexample
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,14 +29,12 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
     // find all plants with names starting with namePrefix
     List<Plant> findByNameStartingWith(String namePrefix);
 
-
     // select * from plant where name like "**$namePrefix"
 
     // find all plants with names ending in nameSuffix
     List<Plant> findByNameEndingWith(String nameSuffix);
 
     // select * from plant where name like "$namePrefix**"
-
 
     // find all plants with names containing pattern
     List<Plant> findByNameContaining(String pattern);
@@ -80,7 +77,7 @@ public interface PlantRepo extends JpaRepository<Plant, Long> {
     List<Plant> findByFavoriteSoilType_dryIsTrue();
 
     // find plants with a certain soil type identified by its ID
-//    List<Plant> findByFavoriteSoilType_id(long soilTypeId);
+    //    List<Plant> findByFavoriteSoilType_id(long soilTypeId);
     Optional<Plant> findByFavoriteSoilType_id(long soilTypeId);
 
     //////////////// LIMITING KEYWORDS ////////////////

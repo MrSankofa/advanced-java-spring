@@ -14,5 +14,7 @@ public class SpringBeansDemoConfig {
     }
 
     @Bean
-    public Employer employer() { return new Employer("SBE", 5, 100000); }
+    public Employer employer() {
+        return new Employer("SBE", 5, 100000);
+    }
 }
