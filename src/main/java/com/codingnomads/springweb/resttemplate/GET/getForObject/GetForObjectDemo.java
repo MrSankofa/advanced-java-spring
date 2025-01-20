@@ -21,7 +21,8 @@ public class GetForObjectDemo {
         SpringApplication.run(GetForObjectDemo.class, args);
     }
 
-    // so the rest template allows you to create a type T in which you can make a request to a URL and get that data mapped to the java type T you created
+    // so the rest template allows you to create a type T in which you can make a request to a URL and get that data
+    // mapped to the java type T you created
     @Bean
     public CommandLineRunner run() throws Exception {
         return args -> {
@@ -32,7 +33,8 @@ public class GetForObjectDemo {
 
             // submit more requests here
 
-            ExcuserTemplate[] randomExcuse = restTemplate.getForObject("https://excuser-three.vercel.app/v1/excuse/family/", ExcuserTemplate[].class);
+            ExcuserTemplate[] randomExcuse = restTemplate.getForObject(
+                    "https://excuser-three.vercel.app/v1/excuse/family/", ExcuserTemplate[].class);
 
             System.out.println("random excuse");
             System.out.println(Arrays.toString(randomExcuse));

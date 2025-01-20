@@ -13,7 +13,7 @@ public class SpringDeveloper {
     private Address address;
     private Employer employer;
 
-    public SpringDeveloper(Address address, Employer employer ) {
+    public SpringDeveloper(Address address, Employer employer) {
         this.address = address;
         this.employer = employer;
     }

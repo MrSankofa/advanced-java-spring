@@ -21,5 +21,7 @@ public class DependsOnDemoConfig {
     }
 
     @Bean("ide")
-    public IDE ide() { return new IDE(); }
+    public IDE ide() {
+        return new IDE();
+    }
 }

@@ -23,7 +23,6 @@ public class CodingNomad {
                 jdk.getVersion(),
                 framework.getName(),
                 framework.getVersion(),
-                jUnit.getVersion()
-            );
+                jUnit.getVersion());
     }
 }

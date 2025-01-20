@@ -11,8 +11,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.Provider;
-
 @Service
 public class UserService {
 
@@ -36,7 +34,6 @@ public class UserService {
 
         address = entityManager.merge(address);
 
-
         // create new ContactCard
         ContactCard contactCard =
                 ContactCard.builder().emailAddress("lucile@emailserver.com").build();
@@ -50,8 +47,7 @@ public class UserService {
         // save User to the db
         userRepo.save(user);
 
-//        address = entityManager.merge(address);
-
+        //        address = entityManager.merge(address);
 
         // create a new ContactCard and reassign contactCard
         contactCard = ContactCard.builder()
@@ -67,7 +63,7 @@ public class UserService {
         // save new User assigned to user
         userRepo.save(user);
 
-//        address = entityManager.merge(address);
+        //        address = entityManager.merge(address);
 
         // create new ContactCard and assign it to contactCard
         contactCard = ContactCard.builder()
