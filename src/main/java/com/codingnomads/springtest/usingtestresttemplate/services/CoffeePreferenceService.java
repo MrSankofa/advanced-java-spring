@@ -6,6 +6,8 @@ import com.codingnomads.springtest.usingtestresttemplate.repos.CoffeePreferenceR
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CoffeePreferenceService {
 
@@ -14,5 +16,9 @@ public class CoffeePreferenceService {
 
     public CoffeePreference insertNewCoffeePreference(CoffeePreference coffeePreference) {
         return repo.save(coffeePreference);
+    }
+
+    public List<CoffeePreference> getAllCoffeePreferences() {
+        return repo.findAll();
     }
 }
